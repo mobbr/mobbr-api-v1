@@ -1,29 +1,16 @@
 MOBBR CROWDPAYMENT REST API V1
 ==============================
 
-    > The dynamically generated API quick reference is here: https://api.mobbr.com
-    >
-    > In case of conflict between this documentation and the quick reference, trust the quick reference.
+> The dynamically generated API quick reference is here: https://api.mobbr.com In case of conflict between this documentation and the quick reference, trust the quick reference.
 
-Mobbr is a payment system for social collaboration and crowd-sourcing. It supports crowd-funding with a single button and crowd-payments with a single button.
+Mobbr is a payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button.
 
 The API accepts the following payment destinations:
 - usernames, email addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
 - JSON payment scripts that lists the payment properties and all recipients and their shares
 - URL's, in which case the API does a callback to retrieve a JSON payment script from the <metadata name="participation" content="..." /> HTML tag
 
-##CONCEPTS
-
-- **task** is an URL that received a payment of pledge
-- **recipient** is an user that receives money
-- **sender** is an user that sends or pledges money
-- **participant** is an user that participates in a social collaboration
-- **script** a JSON format that can be used to specify complex payments
-- **share** a part of a payment, our API can do m:n payments in one transaction
-- **pledge** a payment that is not yet paid out to all participants of a task, can be revoked by pledger
-- **unclaimed share** a share paid to someone who is not yet member, can be revoked by payer
-
-##ENDPOINTS
+##API'S
 
 - [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
 - [Balances] (https://github.com/mobbr/mobbr-api-v1/tree/master/balances)
@@ -37,6 +24,17 @@ The API accepts the following payment destinations:
 - [Uris] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
 - [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
 - [Payin and payout] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
+
+##CONCEPTS
+
+- **task** is an URL that received a payment of pledge
+- **recipient** is an user that receives money
+- **sender** is an user that sends or pledges money
+- **participant** is an user that participates in a social collaboration
+- **script** a JSON format that can be used to specify complex payments
+- **share** a part of a payment, our API can do m:n payments in one transaction
+- **pledge** a payment that is not yet paid out to all participants of a task, can be revoked by pledger
+- **unclaimed share** a share paid to someone who is not yet member, can be revoked by payer
 
 ##REQUEST FORMAT
 
@@ -57,7 +55,7 @@ If you don't supply this header, you will get a `400 Bad Request` response.
 
 ##RESPONSE FORMAT
 
-Responses can be requested in application/xml and application/json, use the Accept header for this.
+Responses can be requested in `application/xml` and `application/json`, use the Accept header for this.
 
 If the Accept header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
@@ -78,7 +76,7 @@ Beside using HTTP-codes, errors are reported in the `message` field of a respons
 
 Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication. This is secure since all requests use SSL/HTTPS.
 
-To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to /api_v1/user/password_login returns a temporary access token (result['token']). Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
+To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to `/api_v1/user/password_login` returns a temporary access token `result['token']`. Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
 
 ##PAGINATION
 

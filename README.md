@@ -17,29 +17,65 @@ CONCEPTS
 - SENDER, is an user that sends or pledges money
 - PARTICIPANT, is an user that participates in a social collaboration
 
+ENDPOINTS
+-----------------
+
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/api
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/balances
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/domains
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/invoices
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/keywords
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/notifications
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/payments
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/persons
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/referrers
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/uris
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/user
+- https://github.com/mobbr/mobbr-api-v1/api/tree/master/xpayments
 
 REQUEST FORMAT
 --------------
 
-PUT and POST requests can be done in application/xml, application/json and application/x-www-form-urlencoded format. Use the Content-Type header to control this.
+PUT and POST requests can be done in `application/xml`, `application/json` and `application/x-www-form-urlencoded` format. Use the Content-Type header to control this.
 
 GET and DELETE parameters require url encoding for arguments. Arrays are repetitions of same-name-arguments.
 
     GET /api_v1/invoices?payment_ids=1&payment_ids=2&...
 
-If the Content-Type header is not recognized or permitted the server returns a '406 Not acceptable' response.
+If the Content-Type header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
+
+You must include a User-Agent header with the name of your application and an URL or email address. Here's a couple of examples:
+
+    User-Agent: CollabZone (https://collab.zone/contact)
+    User-Agent: My Payment App (me@example.com)
+     
+If you don't supply this header, you will get a `400 Bad Request` response.
 
 RESPONSE FORMAT
 ---------------
 
 Responses can be requested in application/xml and application/json, use the Accept header for this.
 
-If the Accept header is not recognized or permitted the server returns a '406 Not acceptable' response.
+If the Accept header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
+
+ERROR-HANDLING
+--------------
+
+Errors are reported in the `message` field of a response. We have type `info`, `warning` and `error`. 
+
+    {
+        "result":null,
+        "message": 
+        {
+            "type":"error",
+            "text":"Input is not an username, an email address, an URL or a valid script"
+        }
+    }
 
 AUTHENTICATION
 --------------
 
-Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication.
+Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication. This is secure since all requests use SSL/HTTPS.
 
 To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to /api_v1/user/password_login returns a temporary access token (result['token']). Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
 
@@ -48,20 +84,25 @@ PAGINATION
 
 Lists are limited to 100 items default. To retrieve more items, use the pagination parameters offset and limit. To retrieve 30 items from a list starting at item 10, use &limit=30&offset=10 in the API-call.
 
+RATE-LIMITING
+-------------
+
+...
+
 SPECIAL API URL'S
 -----------------
 
 - The event hook you can attach to your Github repos
 
-    /callback/github
+        /callback/github
 
 - Button image for specified URL
 
-    /button/<md5_of_url>[/<small|slim|medium|large>[/<currency_iso>]]
+        /button/<md5_of_url>[/<small|slim|medium|large>[/<currency_iso>]]
 
 - Badge image for specified host/domain (a badge show the totals of an entire site)
 
-    /badge/<protocol>/<host>
+        /badge/<protocol>/<host>
 
 OUR OPEN-SOURCE CLIENT
 ----------------------

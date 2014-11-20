@@ -1,6 +1,10 @@
 MOBBR CROWDPAYMENT REST API V1
 ==============================
 
+    > The dynamically generated API quick reference is here: https://api.mobbr.com
+    >
+    > In case of conflict between this documentation and the quick reference, trust the quick reference.
+
 Mobbr is a payment system for social collaboration and crowd-sourcing. It supports crowd-funding with a single button and crowd-payments with a single button.
 
 The API accepts the following payment destinations:

@@ -2,6 +2,17 @@
 
 Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL's. 
 
+- [create payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment)
+- [confirm payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#confirm-payment)
+- [list payments] ()
+- [inspect payment *public*] ()
+- [list claimable payments] ()
+- [claim payments *public*] ()
+- [list pledges]()
+- [delete pledges]()
+- [list unclaimed shares] ()
+- [delete unclaimed shares] ()
+
 ##Create payment
 
 Generates a payment preview. It lists the actual payment properties and recipients. Use `hash` from the result to confirm the payment with `/api_v1/payments/confirm` within 10 minutes.

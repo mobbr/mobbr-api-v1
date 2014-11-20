@@ -10,7 +10,7 @@ Generates a payment preview that can be confirmed within 10 minutes. It lists th
 
     POST /api_v1/payments/preview
 
-#Arguments:
+###Arguments:
 
     data : email,url,json,username
     amount: positive floating point, optional
@@ -19,7 +19,7 @@ Generates a payment preview that can be confirmed within 10 minutes. It lists th
     annotated: leaves internal bookkeeping in (fields starting with a .), optional
     referrer: the origin of the payment, optional
 
-#Example 1, preparing a payment to a Github URL.
+###Example 1, preparing a payment to a Github URL.
 
     curl -X POST -H 
     "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
@@ -29,7 +29,7 @@ Generates a payment preview that can be confirmed within 10 minutes. It lists th
     -d '{"data":"https:\/\/github.com\/identifi\/identifi", "amount":1000, "currency":"GBP"}' 
     https://api.mobbr.com/api_v1/payments/preview
 
-#Result (arrays reduced to a single element):
+###Result (arrays reduced to a single element):
 
     {
         "result": {

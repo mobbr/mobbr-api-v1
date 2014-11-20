@@ -6,12 +6,12 @@ Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL'
 - [confirm payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#confirm-payment)
 - [list payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments)
 - [inspect payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#inspect-payment)
+- [list unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-unclaimed-shares)
+- [revoke unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#revoke-unclaimed-shares)
 - [list claimable payments] ()
 - [claim payments *public*] ()
 - [list pledges]()
 - [delete pledges]()
-- [list unclaimed shares] ()
-- [delete unclaimed shares] ()
 
 ##Create payment
 
@@ -352,3 +352,71 @@ Response
 
 - *Payment shares (receivers) that have an unclaim_id have not yet been claimed by the recipient and can be deleted by the payer using `DELETE /api_v1/payments/unclaimed_shares`*
 
+##List unclaimed shares
+
+List the shares that are not yet claim by their recipients and can still be reclaimed. This can happen when a payment is made to users that are not yet member of Mobbr.
+
+	GET	/api_v1/payments/unclaimed_shares	
+	
+**Example**
+	
+Request
+
+    curl 
+    -X GET 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/unclaimed_shares
+	
+Response
+
+    {
+        "result": [
+                {
+                    "currency_iso": "EUR",
+                    "amount": "0.71657143",
+                    "share_id": "3264",
+                    "recipient_id": "mailto:siriuis@dfriki.if",
+                    "payment_id": "302302b4dd1280e2e9a38793de92f210",
+                    "url": "https://github.com/identifi/identifi",
+                    "datetime": "2014-11-20 13:36:22",
+                    "title": "Github repository identifi/identifi",
+                    "description": "Identifi implementation built on Bitcoin code",
+                    "memo": null,
+                    "username": "0b2d4a0e4cbaa624002495e884d2cfa0",
+                    "gravatar": "e30d5696b25f0dcd1bdf609753602977"
+                }
+        ]
+    }
+	
+##Revoke unclaimed shares
+
+Reclaim unclaimed shares / revoking shares. Only shares list by `GET /api_v1/payments/unclaimed_shares` can be revoked
+
+    DELETE	/api_v1/payments/unclaimed_shares
+    
+**Arguments**
+
+    array share_ids
+
+**Example**
+
+Request
+
+    curl 
+    -X DELETE 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Accept: application/json" 
+    -d 'false' 
+    https://test-api.mobbr.com/api_v1/payments/unclaimed_shares?share_ids=345345345&share_ids=3454564
+
+Response
+
+    {
+        "result": [],
+        "message": {
+            "text": "0 share(s) revoked",
+            "type": "info"
+        }
+    }

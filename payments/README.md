@@ -1,11 +1,11 @@
 #Payments API
 
-Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL's. 
+Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL's.
 
 - [create payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment)
 - [confirm payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#confirm-payment)
-- [list payments] ()
-- [inspect payment *public*] ()
+- [list payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments)
+- [inspect payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#inspect-payment)
 - [list claimable payments] ()
 - [claim payments *public*] ()
 - [list pledges]()
@@ -21,12 +21,12 @@ Generates a payment preview. It lists the actual payment properties and recipien
 
 **Arguments**
 
-    data                 : email,URL,JSON,username
-    amount *optional*    : positive floating point
-    currency *optional*  : ISO-code
-    invoiced *optional*  : TRUE or FALSE, will only pay recipients that have complete profiles
-    annotated *optional* : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
-    referrer *optional*  : URL, the origin of the payment
+    data                : email,URL,JSON,username
+    amount (=NULL)      : positive floating point
+    currency (=NULL)    : ISO-code
+    invoiced (=FALSE)   : TRUE or FALSE, will only pay recipients that have complete profiles
+    annotated (=TRUE)   : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
+    referrer (=NULL)    : URL, the origin of the payment
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 
@@ -157,8 +157,7 @@ The data argument can also contain JSON scripts that describe a complex payment,
         "type": "donation"
     }
 
-Confirm payment
----------------
+##Confirm payment
 
 Confirms a payment preview, actually distributing money and informing the recipients. Returns the confirmed payment.
 
@@ -166,7 +165,7 @@ Confirms a payment preview, actually distributing money and informing the recipi
    
 **Arguments**
 
-    hash : the hash that was returned by /api_v1/payments/preview
+    hash    : the hash that was returned by /api_v1/payments/preview
     
 **Example**
 
@@ -221,3 +220,135 @@ Response
             "type": "info"
         }
     }
+
+##List payments
+
+List all payment for the authenticated user.
+
+    /api_v1/payments
+
+**Arguments**
+
+    search(=null)       : part of keyword, recipient or date
+    from_date(=null)    : YYYY-MM-DD HH:MM:SS
+    to_date(=null)      : YYYY-MM-DD HH:MM:SS
+    offset(=0)          
+    limit(=100)    
+
+**Example**
+
+Request
+  
+    curl 
+    -X GET 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments    
+
+Response
+
+    {
+        "result": [
+            {
+                "id": "302302b4dd1280e2e9a38793de92f210",
+                "url": "https://github.com/identifi/identifi",
+                "datetime": "2014-11-20 13:36:22",
+                "amount": "-1.00000000",
+                "currency_iso": "EUR",
+                "title": "Github repository identifi/identifi",
+                "description": "Identifi implementation built on Bitcoin code",
+                "memo": null,
+                "invoiced": "0",
+                "copyright": null,
+                "language": "EN",
+                "since_last_login": "1"
+            }
+        ]
+    }
+    
+##Inspect payment
+ 
+Extended payment information
+
+    /api_v1/payments/info
+    
+**Arguments**
+
+    id                          : The UUID of the payment
+    include_receivers(=true)    : Return list of recipients
+    include_senders(=true)      : Return list of senders 
+    include_keywords(=true)     : List all keywords
+    
+**Example**
+
+Request
+
+    curl 
+    -X GET 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/info?id=302302b4dd1280e2e9a38793de92f210
+
+Response
+
+    {
+        "result": {
+            "id": "302302b4dd1280e2e9a38793de92f210",
+            "uri": "https://github.com/identifi/identifi",
+            "ref_uri": null,
+            "img_uri": "https://images.weserv.nl?url=ssl:avatars3.githubusercontent.com%2Fu%2F3898718%3Fv%3D3%26s%3D400&h=150&w=150&t=square&trim=20",
+            "paiddatetime": "2014-11-20 13:36:22",
+            "approveddatetime": null,
+            "amount": "-1.00000000",
+            "currency_iso": "EUR",
+            "invoiced": "0",
+            "callback_url": null,
+            "callback_datetime": null,
+            "title": "Github repository identifi/identifi",
+            "description": "Identifi implementation built on Bitcoin code",
+            "copyright": null,
+            "language_iso": "EN",
+            "mime_type": null,
+            "memo": null,
+            "domain": "github.com",
+            "favicon": "https://www.google.com/s2/favicons?domain=github.com",
+            "keywords": [
+                {
+                    "keyword": "github.com",
+                    "language_iso": "EN"
+                }
+            ],
+            "receivers": [
+                {
+                    "gravatar": "e30d5696b25f0dcd1bdf609753602977",
+                    "username": "me@email.com",
+                    "share_id": "3264",
+                    "amount": "0.71657143",
+                    "currency_iso": "EUR",
+                    "share": "71.65714286",
+                    "role": "Contributor",
+                    "unclaimed": "https://github.com/mmalmi",
+                    "unclaim_id": "3264"
+                }
+            ],
+            "senders": [
+                {
+                    "gravatar": "e6032c3bbb3ece98d2782862594b08c2",
+                    "username": "Patrick",
+                    "share_id": null,
+                    "amount": "-1.00000000",
+                    "currency_iso": "EUR",
+                    "share": "100.00000000",
+                    "role": "Payer"
+                }
+            ]
+        },
+        "message": null
+    }
+    
+*notes* 
+
+- *Payment shares (receivers) that have an unclaim_id have not yet been claimed by the recipient and can be deleted by the payer using `DELETE /api_v1/payments/unclaimed_shares`*
+

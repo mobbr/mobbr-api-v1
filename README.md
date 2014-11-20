@@ -23,7 +23,9 @@ REQUEST FORMAT
 
 PUT and POST requests can be done in application/xml, application/json and application/x-www-form-urlencoded format. Use the Content-Type header to control this.
 
-GET and DELETE parameters require url encoding for arguments, arrays are repetitions of same-name-arguments.
+GET and DELETE parameters require url encoding for arguments. Arrays are repetitions of same-name-arguments.
+
+    GET /api_v1/invoices?payment_ids=1&payment_ids=2&...
 
 If the Content-Type header is not recognized or permitted the server returns a '406 Not acceptable' response.
 
@@ -49,17 +51,17 @@ Lists are limited to 100 items default. To retrieve more items, use the paginati
 SPECIAL API URL'S
 -----------------
 
+- The event hook you can attach to your Github repos
+
     /callback/github
 
-The event hook you can attach to your Github repos
+- Button image for specified URL
 
-    /button/<md5>[/<type>[/<currency>]]
+    /button/<md5_of_url>[/<small|slim|medium|large>[/<currency_iso>]]
 
-Button image for specified URL (send the MD% of the URL), type (medium, large, small) and currency (ISO-code)
+- Badge image for specified host/domain (a badge show the totals of an entire site)
 
     /badge/<protocol>/<host>
-
-badge image for specified host.
 
 OUR OPEN-SOURCE CLIENT
 ----------------------
@@ -73,7 +75,7 @@ We have a sandbox available on https://test-api.mobbr.com (API) and https://test
 
 Use the following accounts to login to the test environment, usernames TEST1 to TEST10, password: m0bbr2014
 
-The test system will never sent mail except for registration mail.
+The test system will never send mail except for registration mail.
 
 To use the sandbox in your website, just include the mobbr-script from the sandbox-URL (https://test-www.mobbr.com/mobb-button.js) instead of the production-URL (https://mobbr.com/mobbr-button.js).
 

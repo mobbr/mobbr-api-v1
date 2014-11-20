@@ -3,7 +3,7 @@ MOBBR CROWDPAYMENT REST API V1
 
 > The dynamically generated API quick reference is here: https://api.mobbr.com In case of conflict between this documentation and the quick reference, trust the quick reference.
 
-Mobbr is a payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button.
+Mobbr is a wallet-based payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button.
 
 The API accepts the following payment destinations:
 - usernames, email addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
@@ -13,17 +13,16 @@ The API accepts the following payment destinations:
 ##API'S
 
 - [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
+- [Payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
+- [Withdraw and deposit] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
+- [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
 - [Balances] (https://github.com/mobbr/mobbr-api-v1/tree/master/balances)
 - [Domains] (https://github.com/mobbr/mobbr-api-v1/tree/master/domains)
 - [Invoicing] (https://github.com/mobbr/mobbr-api-v1/tree/master/invoices)
 - [Keywords] (https://github.com/mobbr/mobbr-api-v1/tree/master/keywords)
 - [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
-- [Crowd payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
 - [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
-- [Referers] (https://github.com/mobbr/mobbr-api-v1/tree/master/referers)
 - [Uris] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
-- [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
-- [Payin and payout] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
 
 ##CONCEPTS
 
@@ -35,6 +34,7 @@ The API accepts the following payment destinations:
 - **share** a part of a payment, our API can do m:n payments in one transaction
 - **pledge** a payment that is not yet paid out to all participants of a task, can be revoked by pledger
 - **unclaimed share** a share paid to someone who is not yet member, can be revoked by payer
+- **ID** is an special URL that can be used as payment recipient because it uniquely identifies a person
 
 ##REQUEST FORMAT
 

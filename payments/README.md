@@ -61,11 +61,11 @@ Response, arrays reduced to a single element
                 "description": "Identifi implementation built on Bitcoin code",
                 "participants": [
                     {
-                        "id": "mailto:octocat@github.com",
+                        "id": "mailto:patrick@mobbr.com",
                         "role": "Platform-owner",
                         "share": "1",
-                        ".x-id": "7194e8d48fa1d2b689f99443b767316c",
-                        ".percentage": "1",
+                        ".x-id": "Patrick",
+                        ".percentage": "...",
                         ".gravatar": "7194e8d48fa1d2b689f99443b767316c"
                     }
                 ],

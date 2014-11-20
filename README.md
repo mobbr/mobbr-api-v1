@@ -8,16 +8,18 @@ The API accepts the following payment destinations:
 - JSON payment scripts that lists the payment properties and all recipients and their shares
 - URL's, in which case the API does a callback to retrieve a JSON payment script from the <metadata name="participation" content="..." /> HTML tag
 
-CONCEPTS
---------
-- TASK, is an URL that received a payment of pledge
-- RECIPIENT, is an user that receives money
-- SENDER, is an user that sends or pledges money
-- PARTICIPANT, is an user that participates in a social collaboration
-- SCRIPT, a JSON format pat
+##CONCEPTS
 
-ENDPOINTS
------------------
+- **task** is an URL that received a payment of pledge
+- **recipient** is an user that receives money
+- **sender** is an user that sends or pledges money
+- **participant** is an user that participates in a social collaboration
+- **script** a JSON format that can be used to specify complex payments
+- **share** a part of a payment, our API can do m:n payments in one transaction
+- **pledge** a payment that is not yet paid out to all participants of a task, can be revoked by pledger
+- **unclaimed share** a share paid to someone who is not yet member, can be revoked by payer
+
+##ENDPOINTS
 
 - [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
 - [Balances] (https://github.com/mobbr/mobbr-api-v1/tree/master/balances)
@@ -25,15 +27,14 @@ ENDPOINTS
 - [Invoicing] (https://github.com/mobbr/mobbr-api-v1/tree/master/invoices)
 - [Keywords] (https://github.com/mobbr/mobbr-api-v1/tree/master/keywords)
 - [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
-- [Payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
+- [Crowd payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
 - [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
 - [Referers] (https://github.com/mobbr/mobbr-api-v1/tree/master/referers)
 - [Uris] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
 - [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
-- [Xpayments] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
+- [Payin and payout] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
 
-REQUEST FORMAT
---------------
+##REQUEST FORMAT
 
 PUT and POST requests can be done in `application/xml`, `application/json` and `application/x-www-form-urlencoded` format. Use the Content-Type header to control this.
 
@@ -50,17 +51,15 @@ You must include a User-Agent header with the name of your application and an UR
      
 If you don't supply this header, you will get a `400 Bad Request` response.
 
-RESPONSE FORMAT
----------------
+##RESPONSE FORMAT
 
 Responses can be requested in application/xml and application/json, use the Accept header for this.
 
 If the Accept header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
-ERROR-HANDLING
---------------
+##ERROR-HANDLING
 
-Errors are reported in the `message` field of a response. We have type `info`, `warning` and `error`. 
+Beside using HTTP-codes, errors are reported in the `message` field of a response. We have type `info`, `warning` and `error`. 
 
     {
         "result":null,
@@ -71,25 +70,21 @@ Errors are reported in the `message` field of a response. We have type `info`, `
         }
     }
 
-AUTHENTICATION
---------------
+##AUTHENTICATION
 
 Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication. This is secure since all requests use SSL/HTTPS.
 
 To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to /api_v1/user/password_login returns a temporary access token (result['token']). Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
 
-PAGINATION
-----------
+##PAGINATION
 
 Lists are limited to 100 items default. To retrieve more items, use the pagination parameters offset and limit. To retrieve 30 items from a list starting at item 10, use &limit=30&offset=10 in the API-call.
 
-RATE-LIMITING
--------------
+##RATE-LIMITING
 
 ...
 
-SPECIAL API URL'S
------------------
+##SPECIAL API URL'S
 
 - The event hook you can attach to your Github repos
 
@@ -103,13 +98,11 @@ SPECIAL API URL'S
 
         /badge/<protocol>/<host>
 
-OUR OPEN-SOURCE CLIENT
-----------------------
+##OUR OPEN-SOURCE CLIENT
 
 Our own website (the AngularJS browser-client) is available as open-source on /mobbr/mobbr-frontend. You can use it to build your own payment website on your own domain. In the Mobbr philosophy everybody who adds value, should receive his or her fair share, so it whould only be logical that you include yourself in the recipients / participants of the transactions you facilitate, taking your fair share.
 
-TEST-ENVIRONMENT / SANDBOX
---------------------------
+##TEST-API / SANDBOX
 
 We have a sandbox available on https://test-api.mobbr.com (API) and https://test-www.mobbr.com (WWW). The sandbox-API uses the Mangopay sandbox and Bitcoin testnet, so you can try anything you like without any risk. The sandbox also doubles as our test-environment so it will not be as stable as our production environment and we reserve the right to reset the database (i.e. clear all accounts) at any time.
 

@@ -1,9 +1,7 @@
-API V1
-======
+MOBBR CROWDPAYMENT REST API V1
+==============================
 
-The Mobbr REST-API documentation.
-
-Mobbr is a payment system for social collaboration and crowd-sourcing. It support crowd-funding with a single button and crowd-payments with a single button.
+Mobbr is a payment system for social collaboration and crowd-sourcing. It supports crowd-funding with a single button and crowd-payments with a single button.
 
 The API accepts the following payment destinations:
 - usernames, email addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
@@ -16,6 +14,7 @@ CONCEPTS
 - RECIPIENT, is an user that receives money
 - SENDER, is an user that sends or pledges money
 - PARTICIPANT, is an user that participates in a social collaboration
+- SCRIPT, a JSON format pat
 
 ENDPOINTS
 -----------------

@@ -11,13 +11,15 @@ Generates a payment preview. It lists the actual payment properties and recipien
 **Arguments**
 
     data                 : email,URL,JSON,username
-    amount (optional)    : positive floating point
-    currency (optional)  : ISO-code
-    invoiced (optional)  : TRUE or FALSE, will only pay recipients that have complete profiles, optional
-    annotated (optional) : TRUE or FALSE, boolean, leaves internal bookkeeping in (fields starting with a .), optional
-    referrer )optional)  : URL, the origin of the payment, optional
+    amount *optional*    : positive floating point
+    currency *optional*  : ISO-code
+    invoiced *optional*  : TRUE or FALSE, will only pay recipients that have complete profiles
+    annotated *optional* : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
+    referrer *optional*  : URL, the origin of the payment
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
+
+Request
 
     curl 
     -X POST 
@@ -28,7 +30,7 @@ Generates a payment preview. It lists the actual payment properties and recipien
     -d '{"data":"https:\/\/github.com\/identifi\/identifi"}' 
     https://api.mobbr.com/api_v1/payments/preview
 
-Result, arrays reduced to a single element
+Response, arrays reduced to a single element
 
     {
         "result": {
@@ -69,7 +71,9 @@ Result, arrays reduced to a single element
         "message": null
     }
 
-**Example 2**, preparing actual payment to a username.
+**Example 2**, preparing actual payment to a username, amount and currency specified.
+
+Request
 
     curl 
     -X POST 
@@ -79,7 +83,7 @@ Result, arrays reduced to a single element
     -d '{"data":"Patrick", "amount":10, "currency":"GBP"}' 
     https://api.mobbr.com/api_v1/payments/preview
 
-Result
+Response
 
     {
         "result": {
@@ -149,7 +153,13 @@ Confirms a payment preview, actually distributing money and informing the recipi
 
     PUT /api_v1/payments/confirm
    
+**Arguments**
+
+    hash : the hash that was returned by /api_v1/payments/preview
+    
 **Example**
+
+Request
   
     curl 
     -X PUT 
@@ -157,7 +167,7 @@ Confirms a payment preview, actually distributing money and informing the recipi
     -H "Content-Type: application/json" 
     -d '{"hash":"178faa2f3d321a662e86cc42e2acd508"}' https://test-api.mobbr.com/api_v1/payments/confirm
     
-Result
+Response
 
     {
         "result": {

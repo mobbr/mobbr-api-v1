@@ -1,12 +1,12 @@
 #Payments API
 
-Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL's.
+Make payments and pledges to usernames, email-addresses, OAUTH profiles, payment scripts and URL's.
 
 - [create payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment)
 - [confirm payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#confirm-payment)
 - [list payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments)
 - [list payments for domain] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments-for-domain)
-- [list payments for URL] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-paymentfor-url)
+- [list payments for URL] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments-for-url)
 - [inspect payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#inspect-payment)
 - [list unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-unclaimed-shares)
 - [revoke unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#revoke-unclaimed-shares)
@@ -31,11 +31,11 @@ Generates a payment preview. It lists the actual payment properties and recipien
     referrer (=NULL)    : URL, the origin of the payment
 
 Examples of recipients that can be put in the `data` argument:
-- me@mail.com
-- mailto:me@mail.com
-- https://github.com/patricksavalle (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
-- https://github.com/mobbr/mobbr-api-v1 (any URL that has Mobbr support)
-- a JSON payment script, see example below
+- `me@mail.com`
+- `mailto:me@mail.com`
+- `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
+- `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
+- `{...}` (a JSON payment script, see example below)
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 
@@ -88,7 +88,7 @@ Response, arrays reduced to a single element
         },
         "message": null
     }
-
+    
 **Example 2**, preparing actual payment to a username, amount and currency specified.
 
 Request
@@ -138,8 +138,8 @@ The data argument can also contain JSON scripts that describe a complex payment,
     {
         "image": "https://avatars3.githubusercontent.com/u/3898718?v=3&s=400",
         "language": "EN",
-        "title": "Github repository identifi/identifi",
-        "description": "Identifi implementation built on Bitcoin code",
+        "title": "Any title",
+        "description": "Any description",
         "participants": [
             {
                 "id": "mailto:octocat@github.com",
@@ -160,8 +160,7 @@ The data argument can also contain JSON scripts that describe a complex payment,
         "keywords": [
             "keyword"
         ],
-        "message": "Anything the user shoudl know before paying.",
-        "type": "donation"
+        "message": "Text",
     }
 
 ##Confirm payment
@@ -279,7 +278,7 @@ Response
 
 List all payment for the specified domain / host.
 
-    /api_v1/payments
+    /api_v1/payments/domain
 
 **Arguments**
 
@@ -316,7 +315,7 @@ Response
 
 List all payment for the specified URL.
 
-    /api_v1/payments
+    /api_v1/payments/uri
 
 **Arguments**
 
@@ -332,7 +331,7 @@ Request
     -X GET 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
-    https://test-api.mobbr.com/api_v1/payments/domain?url=https://github.com/identifi/identifi
+    https://test-api.mobbr.com/api_v1/payments/uri?url=https://github.com/identifi/identifi
 
 Response
 
@@ -444,7 +443,7 @@ Response
     
 *notes* 
 
-- *Payment shares (receivers) that have an unclaim_id have not yet been claimed by the recipient and can be deleted by the payer using `DELETE /api_v1/payments/unclaimed_shares`*
+- *Payment shares that have an unclaim_id have not yet been claimed by the recipient and can be deleted by the payer using `DELETE /api_v1/payments/unclaimed_shares`*
 
 ##List unclaimed shares
 
@@ -596,6 +595,7 @@ Request
 
     curl 
     -X GET 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     https://test-api.mobbr.com/api_v1/payments/pledged
@@ -627,7 +627,7 @@ Delete / revoke a pledge this user made to an URL. The API will do a callback to
     
 **Arguments**
 
-    array share_ids
+    array ids   : ID's of payments (have a MD5 format)
 
 **Example**
 

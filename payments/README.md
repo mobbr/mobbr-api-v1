@@ -5,13 +5,15 @@ Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL'
 - [create payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment)
 - [confirm payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#confirm-payment)
 - [list payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments)
+- [list payments for domain] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-payments-for-domain)
+- [list payments for URL] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-paymentfor-url)
 - [inspect payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#inspect-payment)
 - [list unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-unclaimed-shares)
 - [revoke unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#revoke-unclaimed-shares)
 - [list claimable payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-claimable-payments)
 - [claim payments *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payment)
-- [list pledges]()
-- [delete pledges]()
+- [list pledges](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-pledges)
+- [delete pledges](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#delete-pledges)
 
 ##Create payment
 
@@ -27,6 +29,13 @@ Generates a payment preview. It lists the actual payment properties and recipien
     invoiced (=FALSE)   : TRUE or FALSE, will only pay recipients that have complete profiles
     annotated (=TRUE)   : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
     referrer (=NULL)    : URL, the origin of the payment
+
+Examples of recipients that can be put in the `data` argument:
+- me@mail.com
+- mailto:me@mail.com
+- https://github.com/patricksavalle (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
+- https://github.com/mobbr/mobbr-api-v1 (any URL that has Mobbr support)
+- a JSON payment script, see example below
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 
@@ -266,6 +275,93 @@ Response
         ]
     }
     
+##List payments for domain
+
+List all payment for the specified domain / host.
+
+    /api_v1/payments
+
+**Arguments**
+
+    domain      : the domain / host for which to list the payments
+    offset(=0)          
+    limit(=100)    
+
+**Example**
+
+Request
+  
+    curl 
+    -X GET 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/domain=github.com
+
+Response
+
+    {
+        "result": [
+            {
+                "url": "https://github.com/identifi/identifi",
+                "datetime": "2014-11-20 13:36:22",
+                "amount": "1.00000000",
+                "currency_iso": "EUR",
+                "title": "Github repository identifi/identifi"
+            }
+        ],
+        "message": null
+    }
+    
+##List payments for URL
+
+List all payment for the specified URL.
+
+    /api_v1/payments
+
+**Arguments**
+
+    url
+    offset(=0)          
+    limit(=100)    
+
+**Example**
+
+Request
+  
+    curl 
+    -X GET 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/domain?url=https://github.com/identifi/identifi
+
+Response
+
+    {
+        "result": [
+            {
+                "id": "302302b4dd1280e2e9a38793de92f210",
+                "url": "https://github.com/identifi/identifi",
+                "datetime": "2014-11-20 13:36:22",
+                "amount": "1.00000000",
+                "currency_iso": "EUR",
+                "is_pledge": "0",
+                "receiver": [
+                    {
+                        "gravatar": "7194e8d48fa1d2b689f99443b767316c",
+                        "username": "Ernesto"
+                    }
+                ],
+                "senders": [
+                    {
+                        "gravatar": "e6032c3bbb3ece98d2782862594b08c2",
+                        "username": "Patrick"
+                    }
+                ]
+            }
+        ],
+        "message": null
+    }
+    
 ##Inspect payment
  
 Extended payment information
@@ -429,6 +525,8 @@ List all 'claimable payments' (pledges) for an URL. These payments can be claime
 
     url_or_email : the URL, ID (=URL) or email for which the pledges or unclaimed payments are listed
 
+**example**
+
 Request
 
     curl 
@@ -454,7 +552,6 @@ Response
         ],
         "message": null
     }
-
 
 ##Claim payments
 
@@ -486,4 +583,70 @@ Response
 
 ##List pledges
 
+List all payments that can still be deleted revoked by the user (such as pledges). 
+
+    GET /api_v1/payments/pledged
+
+**Arguments**
+
+    offset(=0)          
+    limit(=100)    
+
+Request
+
+    curl 
+    -X GET 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/pledged
+
+Response
+
+    {
+        "result": [
+            {
+                "id": "006d0653d76f7fa398cef8e0c0fcb315",
+                "domain": null,
+                "url": null,
+                "paiddatetime": "2014-11-14 11:43:05",
+                "amount": "-1.00000000",
+                "currency_iso": "EUR",
+                "title": null,
+                "description": null,
+                "callback_url": null
+            }
+        ],
+        "message": null
+    }
+
 ##Delete pledges
+
+Delete / revoke a pledge this user made to an URL. The API will do a callback to all URL's whose pledges are revoked to notify all current participants of this event.
+
+    DELETE	/api_v1/payments/unclaimed_shares
+    
+**Arguments**
+
+    array share_ids
+
+**Example**
+
+Request
+
+    curl 
+    -X DELETE 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Accept: application/json" 
+    -d 'false' 
+    https://test-api.mobbr.com/api_v1/payments/unclaimed_shares?ids=006d0653d76f7fa398cef8e0c0fcb315&ids=006d0653d76f7fa398cef8e0c0fcb315
+
+Response
+
+    {
+        "result": [],
+        "message": {
+            "text": "0 payments(s) revoked",
+            "type": "info"
+        }
+    }
+    

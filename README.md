@@ -19,18 +19,18 @@ CONCEPTS
 ENDPOINTS
 -----------------
 
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/api
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/balances
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/domains
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/invoices
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/keywords
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/notifications
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/payments
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/persons
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/referrers
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/uris
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/user
-- https://github.com/mobbr/mobbr-api-v1/api/tree/master/xpayments
+- [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
+- [Balances] (https://github.com/mobbr/mobbr-api-v1/tree/master/balances)
+- [Domains] (https://github.com/mobbr/mobbr-api-v1/tree/master/domains)
+- [Invoicing] (https://github.com/mobbr/mobbr-api-v1/tree/master/invoices)
+- [Keywords] (https://github.com/mobbr/mobbr-api-v1/tree/master/keywords)
+- [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
+- [Payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
+- [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
+- [Referers] (https://github.com/mobbr/mobbr-api-v1/tree/master/referers)
+- [Uris] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
+- [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
+- [Xpayments] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
 
 REQUEST FORMAT
 --------------

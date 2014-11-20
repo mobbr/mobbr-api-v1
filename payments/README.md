@@ -8,8 +8,8 @@ Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL'
 - [inspect payment *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#inspect-payment)
 - [list unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-unclaimed-shares)
 - [revoke unclaimed shares] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#revoke-unclaimed-shares)
-- [list claimable payments] ()
-- [claim payments *public*] ()
+- [list claimable payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#list-claimable-payments)
+- [claim payments *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payment)
 - [list pledges]()
 - [delete pledges]()
 
@@ -34,8 +34,6 @@ Request
 
     curl 
     -X POST 
-    -H 
-    "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -d '{"data":"https:\/\/github.com\/identifi\/identifi"}' 
@@ -175,7 +173,8 @@ Request
     -X PUT 
     -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
-    -d '{"hash":"178faa2f3d321a662e86cc42e2acd508"}' https://test-api.mobbr.com/api_v1/payments/confirm
+    -d '{"hash":"178faa2f3d321a662e86cc42e2acd508"}' 
+    https://test-api.mobbr.com/api_v1/payments/confirm
     
 Response
 
@@ -286,7 +285,6 @@ Request
 
     curl 
     -X GET 
-    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     https://test-api.mobbr.com/api_v1/payments/info?id=302302b4dd1280e2e9a38793de92f210
@@ -354,7 +352,7 @@ Response
 
 ##List unclaimed shares
 
-List the shares that are not yet claim by their recipients and can still be reclaimed. This can happen when a payment is made to users that are not yet member of Mobbr.
+List the shares that are not yet claimed by their recipients and can still be reclaimed. Shares are unclaimed when paid to users that are not yet member of Mobbr.
 
 	GET	/api_v1/payments/unclaimed_shares	
 	
@@ -392,7 +390,7 @@ Response
 	
 ##Revoke unclaimed shares
 
-Reclaim unclaimed shares / revoking shares. Only shares list by `GET /api_v1/payments/unclaimed_shares` can be revoked
+Reclaim unclaimed shares / revoking shares. Only shares listed by `GET /api_v1/payments/unclaimed_shares` can be revoked
 
     DELETE	/api_v1/payments/unclaimed_shares
     
@@ -420,3 +418,72 @@ Response
             "type": "info"
         }
     }
+    
+##List claimable payments
+
+List all 'claimable payments' (pledges) for an URL. These payments can be claimed by calling `PUT /api_v1/payments/claim` or by registering with the specified email address
+
+    GET /api_v1/payments/claimable
+
+**Arguments**
+
+    url_or_email : the URL, ID (=URL) or email for which the pledges or unclaimed payments are listed
+
+Request
+
+    curl 
+    -X GET 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    https://test-api.mobbr.com/api_v1/payments/claimable?url_or_email=https://github.com/mobbr/mobbr-frontend/issues/189
+
+Response
+
+    {
+        "result": [
+            {
+                "url": "https://github.com/mobbr/mobbr-frontend/issues/189",
+                "title": "Github repository mobbr/mobbr-frontend, issue #189",
+                "description": "Sharing section on TASKS",
+                "id": "b75170c7fb697c4613168cb7b87522aa",
+                "invoiced": "0",
+                "ref_uri": "https://mobbr.com/#/task/aHR0cHM6Ly9naXRodWIuY29tL21vYmJyL21vYmJyLWZyb250ZW5kL2lzc3Vlcy8xODk=/pay",
+                "amount": "-150.00000000",
+                "currency_iso": "EUR"
+            }
+        ],
+        "message": null
+    }
+
+
+##Claim payments
+
+Trigger all pledges for an URL. The API will do a callback to the URL to discover the payment script and use the script to pay all recipients listed. If the script is still in pledge mode, nothing will happen.
+
+**Arguments**
+
+    URL : the URL for which all pledges or unclaimed payments are to be paid out to the designated recipients
+    
+**Example**
+
+Request
+  
+    curl 
+    -X PUT 
+    -H "Content-Type: application/json" 
+    -d '{"url":"https://github.com/mobbr/mobbr-frontend/issues/189"}' 
+    https://test-api.mobbr.com/api_v1/payments/claim
+    
+Response
+
+    {
+        "result":null,
+        "message": {
+            "type":"error",
+            "text":"Cannot claim this pledge because task is still in pledging mode"
+        }
+    }
+
+##List pledges
+
+##Delete pledges

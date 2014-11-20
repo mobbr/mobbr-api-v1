@@ -1,10 +1,8 @@
-Payments API
-============
+#Payments API
 
 Payments to usernames, email-addresses, OAUTH profiles, payment scripts and URL's. 
 
-Create payment
---------------
+##Create payment
 
 Generates a payment preview that can be confirmed within 10 minutes. It lists the actual payment properties and recipients. Use `hash` from the result to confirm the payment.
 
@@ -19,17 +17,20 @@ Generates a payment preview that can be confirmed within 10 minutes. It lists th
     annotated: leaves internal bookkeeping in (fields starting with a .), optional
     referrer: the origin of the payment, optional
 
-###Example 1, preparing a payment to a Github URL.
+###Example 1
 
-    curl -X POST -H 
+Previewing only recipients of a payment to a Github URL, no amount or currency specified.
+
+    curl 
+    -X POST 
+    -H 
     "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
-    -H "Cache-Control: no-cache" 
-    -d '{"data":"https:\/\/github.com\/identifi\/identifi", "amount":1000, "currency":"GBP"}' 
+    -d '{"data":"https:\/\/github.com\/identifi\/identifi"}' 
     https://api.mobbr.com/api_v1/payments/preview
 
-###Result (arrays reduced to a single element):
+Result (arrays reduced to a single element):
 
     {
         "result": {
@@ -66,6 +67,48 @@ Generates a payment preview that can be confirmed within 10 minutes. It lists th
                 ".logo": "https://github.com/apple-touch-icon.png"
             },
             "url": "https://github.com/identifi/identifi"
+        },
+        "message": null
+    }
+
+###Example 2
+
+Preparing actual payment to a username.
+
+    curl 
+    -X POST 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    -d '{"data":"Patrick", "amount":10, "currency":"GBP"}' 
+    https://api.mobbr.com/api_v1/payments/preview
+
+Result:
+
+    {
+        "result": {
+            "hash": "05b921e21ad2a78d00e7b1ec721baaa8",
+            "script": {
+                "id-base": "https://mobbr.com/#/person/",
+                "type": "pay",
+                "title": "Payment to 'https://mobbr.com/#/person/patrick'",
+                "participants": [
+                    {
+                        "id": "https://mobbr.com/#/person/patrick",
+                        "share": 1,
+                        "role": "",
+                        ".x-id": "Patrick",
+                        ".amount": "10",
+                        ".percentage": "100",
+                        ".gravatar": "e6032c3bbb3ece98d2782862594b08c2"
+                    }
+                ],
+                ".amount": 10,
+                ".currency": "GBP",
+                ".invoiced": false,
+                ".referrer": null
+            },
+            "url": null
         },
         "message": null
     }

@@ -45,7 +45,7 @@ Request
     -X POST 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
-    -d '{"data":"https:\/\/github.com\/identifi\/identifi"}' 
+    -d '{"data":"https://github.com/identifi/identifi"}' 
     https://api.mobbr.com/api_v1/payments/preview
 
 Response, arrays reduced to a single element
@@ -72,7 +72,7 @@ Response, arrays reduced to a single element
                 "keywords": [
                     "software development"
                 ],
-                "message": "Payments done to this URL will immediately be divided (paid out) among currently listed contributors. Contributors can claim their share by registering with Mobbr and connecting their Github-account. Participation is rated based on additions, deletes, commits and recentness.",
+                "message": "text",
                 "type": "donation",
                 ".script-type": [
                     "api"

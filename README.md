@@ -38,15 +38,15 @@ The API accepts the following payment destinations:
 
 ##REQUEST FORMAT
 
-PUT and POST requests can be done in `application/xml`, `application/json` and `application/x-www-form-urlencoded` format. Use the Content-Type header to control this.
+`PUT` and `POST` requests can be done in `application/xml`, `application/json` and `application/x-www-form-urlencoded` format. Use the `Content-Type` header to control this.
 
-GET and DELETE parameters require url encoding for arguments. Arrays are repetitions of same-name-arguments.
+`GET` and `DELETE` parameters require url encoding for arguments. Arrays are repetitions of same-name-arguments.
 
-    GET /api_v1/invoices?payment_ids=1&payment_ids=2&...
+    `GET` /api_v1/invoices?payment_ids=1&payment_ids=2&...
 
-If the Content-Type header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
+If the `Content-Type` header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
-You must include a User-Agent header with the name of your application and an URL or email address. Here's a couple of examples:
+You must include a `User-Agent` header with the name of your application and an URL or email address. Here's a couple of examples:
 
     User-Agent: CollabZone (https://collab.zone/contact)
     User-Agent: My Payment App (me@example.com)
@@ -59,9 +59,9 @@ Responses can be requested in `application/xml` and `application/json`, use the 
 
 If the Accept header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
-##ERROR-HANDLING
+##MESSAGES AND ERROR-HANDLING
 
-Beside using HTTP-codes, errors are reported in the `message` field of a response. We have type `info`, `warning` and `error`. 
+Errors are signaled by HTTP-code. The client should also check the `message` field of a response. We have type `info`, `warning` and `error`. 
 
     {
         "result":null,
@@ -94,7 +94,7 @@ Lists are limited to 100 items default. To retrieve more items, use the paginati
 
 - Button image for specified URL
 
-        /button/<md5_of_url>[/<small|slim|medium|large>[/<currency_iso>]]
+        /button/<md5_of_url>[/<(small|slim|medium|large)>[/<currency_iso>]]
 
 - Badge image for specified host/domain (a badge show the totals of an entire site)
 

@@ -39,6 +39,12 @@ Examples of recipients that can be put in the `data` argument:
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 
+Request data
+
+    {
+        "data":"https://github.com/identifi/identifi"
+    }
+
 Request
 
     curl 
@@ -46,7 +52,7 @@ Request
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -d '{"data":"https://github.com/identifi/identifi"}' 
-    https://api.mobbr.com/api_v1/payments/preview
+    https://test-api.mobbr.com/api_v1/payments/preview
 
 Response, arrays reduced to a single element
 
@@ -91,6 +97,14 @@ Response, arrays reduced to a single element
     
 **Example 2**, preparing actual payment to a username, amount and currency specified.
 
+Request data
+
+    {
+        "data":"Patrick", 
+        "amount":10, 
+        "currency":"GBP"
+    }
+
 Request
 
     curl 
@@ -99,7 +113,7 @@ Request
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -d '{"data":"Patrick", "amount":10, "currency":"GBP"}' 
-    https://api.mobbr.com/api_v1/payments/preview
+    https://test-api.mobbr.com/api_v1/payments/preview
 
 Response
 
@@ -175,6 +189,12 @@ Confirms a payment preview, actually distributing money and informing the recipi
     
 **Example**
 
+Request data
+
+    {
+        "hash":"178faa2f3d321a662e86cc42e2acd508"
+    }
+
 Request
   
     curl 
@@ -232,7 +252,7 @@ Response
 
 List all payment for the authenticated user.
 
-    /api_v1/payments
+    GET /api_v1/payments
 
 **Arguments**
 
@@ -251,7 +271,7 @@ Request
     -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
-    https://test-api.mobbr.com/api_v1/payments    
+    https://test-api.mobbr.com/api_v1/payments?search=Yoursearchterm&from_date=2014-10-28%2001:12  
 
 Response
 
@@ -278,7 +298,7 @@ Response
 
 List all payment for the specified domain / host.
 
-    /api_v1/payments/domain
+    GET /api_v1/payments/domain
 
 **Arguments**
 
@@ -315,7 +335,7 @@ Response
 
 List all payment for the specified URL.
 
-    /api_v1/payments/uri
+    GET /api_v1/payments/uri
 
 **Arguments**
 
@@ -365,7 +385,7 @@ Response
  
 Extended payment information
 
-    /api_v1/payments/info
+    GET /api_v1/payments/info
     
 **Arguments**
 
@@ -487,7 +507,7 @@ Response
 
 Reclaim unclaimed shares / revoking shares. Only shares listed by `GET /api_v1/payments/unclaimed_shares` can be revoked
 
-    DELETE	/api_v1/payments/unclaimed_shares
+    DELETE /api_v1/payments/unclaimed_shares
     
 **Arguments**
 
@@ -501,7 +521,6 @@ Request
     -X DELETE 
     -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Accept: application/json" 
-    -d 'false' 
     https://test-api.mobbr.com/api_v1/payments/unclaimed_shares?share_ids=345345345&share_ids=3454564
 
 Response
@@ -556,11 +575,19 @@ Response
 
 Trigger all pledges for an URL. The API will do a callback to the URL to discover the payment script and use the script to pay all recipients listed. If the script is still in pledge mode, nothing will happen.
 
+    PUT /api_v1/payments/claim
+
 **Arguments**
 
     URL : the URL for which all pledges or unclaimed payments are to be paid out to the designated recipients
     
 **Example**
+
+Request data
+
+    {
+        "url":"https://github.com/mobbr/mobbr-frontend/issues/189"
+    }
 
 Request
   
@@ -637,7 +664,6 @@ Request
     -X DELETE 
     -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Accept: application/json" 
-    -d 'false' 
     https://test-api.mobbr.com/api_v1/payments/unclaimed_shares?ids=006d0653d76f7fa398cef8e0c0fcb315&ids=006d0653d76f7fa398cef8e0c0fcb315
 
 Response

@@ -17,11 +17,11 @@ Withdraw money to external accounts.
 
 **Arguments**
 
-    currency            : ISO code
-    amount              : floating point amount
-    address             : see below
-    note                : text
-    notification_url    : URL
+- *currency*, ISO code
+- *amount*, floating point amount
+- *address*, see below
+- *note*, text
+- *notification_url*, an URL
 
 The following address formats are supported:
 
@@ -88,10 +88,10 @@ Return the fee Mobbr charges for a withdraw.
 
 **Arguments**
 
-    type                : "bitcoin" or "bankwire"
-    currency            : ISO code
-    amount              : floating point amount
-    address             : see /api_v1/xpayments/withdraw
+- *type*, "BITCOIN" or "IBAN", "US", "GB", "CA", "OTHER"
+- *currency*, ISO code
+- *amount*, floating point amount
+- *address*, see /api_v1/xpayments/withdraw
     
 **Example**
 
@@ -103,20 +103,53 @@ Response
 
 ##Deposit
 
-Fund a wallet from an external account.
+Fund a wallet from an external account/source. Depending on type and user profile, a redirect may be needed. The application should redirect to the URL returned by this method (if present in the response). 
+
+The bankwire payin generates an one-time use address into the account of our payment provider, with a code that indicates to which user the amount should be assigned.
 
     POST /api_v1/xpayments/deposit
 
 **Arguments**
+    
+- *type*, "creditcard", "bankwire"
+- *currency*, ISO code
+- *amount*, floating point amount
+- *return_url (=NULL)*, if a redirect was done (creditcard), the called payment page will redirect back to this URL
+- *note (=NULL)*, text
+_ *notification_url (=NULL)*, (not yet implemented)
 
-**Example**
+**Example**, a creditcard payin
 
 Request arguments
 
+    {
+        "type":"creditcard",
+        "currency":"EUR",
+        "amount":12, 
+        "return_url":"https://mydomain.com/my_return_page"
+    }
+
 Request
+
+    curl 
+    -X POST 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    -H "Authorization: Basic VXNlcjpwYXNzd29yZDEyMw==" 
+    -d '{"type":"creditcard","currency":"EUR","amount":12, "return_url":"https://mydomain.com/my_return_page"}' 
+    https://api.mobbr.com/api_v1/xpayments/deposit
 
 Response
 
+    {
+        "result":
+        {
+            "type":"creditcard",
+            "url":"https://webpayment.payline.com/webpayment/step2.do?reqCode=prepareStep2&token=165xU3SkIT9W0pHe86151999838282123"
+        },
+        "message":null
+    }
+    
 ##Deposit fee
 
 Return the fee Mobbr charges for a deposit.
@@ -125,10 +158,10 @@ Return the fee Mobbr charges for a deposit.
 
 **Arguments**
 
-    type                : "bitcoin" or "bankwire" or "creditcard"
-    currency            : ISO code
-    amount              : floating point amount
-    address             : see /api_v1/xpayments/withdraw
+- *type*, "bitcoin" or "bankwire" or "creditcard"
+- *currency*, ISO code
+- *amount*, floating point amount
+- *address*, see /api_v1/xpayments/withdraw
     
 **Example**
 

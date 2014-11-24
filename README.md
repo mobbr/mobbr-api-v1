@@ -5,6 +5,15 @@ MOBBR CROWDPAYMENT REST API V1
 
 Mobbr is a wallet-based payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button.
 
+With this API you can:
+
+- do crowd funding and crowd paying on any URL of any collaboration platform
+- do peer-to-peer (normal) payments and do crowd-to-crowd payments
+- maintain multi-currency wallets for your users
+- create, maintain and check online identities
+- invite the best individuals for tasks
+- find the best tasks for users
+
 The API accepts the following payment destinations:
 - usernames, email addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
 - JSON payment scripts that lists the payment properties and all recipients and their shares
@@ -55,9 +64,7 @@ If you don't supply this header, you will get a `400 Bad Request` response.
 
 ##RESPONSE FORMAT
 
-Responses can be requested in `application/xml` and `application/json`, use the Accept header for this.
-
-If the Accept header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
+Responses can be requested in `application/xml` and `application/json`, use the `Accept` header for this. If the header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
 ##MESSAGES AND ERROR-HANDLING
 
@@ -80,7 +87,7 @@ To keep browser apps from storing username/password combinations in possible uns
 
 ##PAGINATION
 
-Lists are limited to 100 items default. To retrieve more items, use the pagination parameters offset and limit. To retrieve 30 items from a list starting at item 10, use &limit=30&offset=10 in the API-call.
+Lists are limited to 100 items default. To retrieve more items, use the pagination parameters offset and limit. To retrieve 30 items from a list starting at item 10, use `&limit=30&offset=10` in the API-call.
 
 ##RATE-LIMITING
 
@@ -102,7 +109,7 @@ Lists are limited to 100 items default. To retrieve more items, use the paginati
 
 ##OUR OPEN-SOURCE CLIENT
 
-Our own website (the AngularJS browser-client) is available as open-source on /mobbr/mobbr-frontend. You can use it to build your own payment website on your own domain. In the Mobbr philosophy everybody who adds value, should receive his or her fair share, so it whould only be logical that you include yourself in the recipients / participants of the transactions you facilitate, taking your fair share.
+Our own website (the AngularJS browser-client) is available as open-source on /mobbr/mobbr-frontend. You can use it to build your own payment website on your own domain. In the Mobbr philosophy everybody who adds value, should receive his or her fair share, so it would only be logical that you include yourself in the recipients / participants of the transactions you facilitate, taking your fair share.
 
 ##TEST-API / SANDBOX
 

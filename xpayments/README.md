@@ -245,7 +245,7 @@ Response
 
 List all deposit addresses of a wallet
 
-    GET /api_v1/xpayments/list_addresses
+    PUT /api_v1/xpayments/new_address
 
 **Arguments**
 
@@ -311,20 +311,6 @@ Response
                     {
                         "bitcoin": "12NLcKZdn2P7GAWWimiSedGECW1mWgW5V3"
                     }
-                ]
-            },
-            {
-                "message": "IBAN addresses available per Q1/2015",
-                "currency_iso": "USD",
-                "addresses": [
-                    []
-                ]
-            },
-            {
-                "message": "IBAN addresses available per Q1/2015",
-                "currency_iso": "GBP",
-                "addresses": [
-                    []
                 ]
             }
         ],

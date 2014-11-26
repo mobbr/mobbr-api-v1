@@ -69,3 +69,6 @@ Example of the opened lightbox:
 
 ![Example of the opened lightbox]
 (http://i.imgur.com/0xVTJcZ.png)
+
+##Payment script specification
+

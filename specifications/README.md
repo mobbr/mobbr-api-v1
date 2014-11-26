@@ -4,18 +4,8 @@
 <h2>Introduction</h2>
 
 <p>
-    The CPR protocol enables any web page to specify its social participation ranking.
-    This is used by services like <a href="https://mobbr.com/">Mobbr</a>
-    to distribute payments and donations among participants. The ranking reflects the
-    value added to the page or associated products by different participants.
-</p>
-
-<p>
-    In social collaboration every participant will have his own share of total added value.
-</p>
-
-<p>
-    The protocol can be used to describe participation levels using the following types of scripts:
+    In social collaboration every participant will have his own share of total added value. 
+    The Mobbr script is used to distribute payments and donations among many participants in a collaboration by ratio that share. 
 </p>
 <ul>
     <li>
@@ -26,57 +16,18 @@
     </li>
 </ul>
 <p>
-    These desciptions types can be combined, or 'cascaded' for more flexibility.
-</p>
-
-<p>
-    The protocol is based on <a href="http://en.wikipedia.org/wiki/JSON">JSON</a>
+    The Script is in <a href="http://en.wikipedia.org/wiki/JSON">JSON</a>
     (Javascript Object Notation). JSON-syntaxis can
     be checked using a <a href="http://www.jsonlint.com/">online parser</a>
     and JSON-support is good in every major programming language as well as
     in Javascript.
-</p>
-
-<p>
-    A formal description of valid JSON-specifications can be found at the bottom of this document.
 </p>
 <ul>
     <li>
         <a href="#specs">Specification</a>
     </li>
 </ul>
-<p>
-    <a id="cascading"></a>
-</p>
 
-<h2>Cascading-rules</h2>
-
-<p>
-    It is possible to supply a button script as well as a page script as well as a domain script. In this case the
-    processor will cascade (combine) the values in the following order:
-</p>
-<ol>
-    <li>domain script</li>
-    <li>page script</li>
-</ol>
-<p>
-    The scripts are combined and duplicate values are overwritten in the order given above. Percentage shares
-    are summed. If only percentages are used for shares, the sum of shares should be excactly 100%.
-    Any remaining, not assigment, percentage is shared among the relative shares using the indicated ratios.
-</p>
-
-<p>
-    Participants can never be overwritten through cascading scripts, to combine participants with the same ID they need
-    to have different roles.
-</p>
-
-<p>
-    Using this logic it is possible to specify global participants in the /PARTICIPATION.TXT that can never be excluded
-    by
-    button or page scripts. For instance the website owner and such. If such a recipient such has a percentage share,
-    his
-    share can never be reduced nor excluded.
-</p>
 <p>
     <a id="xhtml"></a>
 </p>
@@ -157,31 +108,6 @@
         &lt;head&gt;
         <b>&lt;link rel="participation" type="application/json"
             href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
-<h2>Helpfull (X)HTML elements</h2>
-
-<p>Additional metadata / properties that can help the payments system to make intelligent decisions:</p>
-<ul>
-    <li>The HTML &lt;title&gt; element.</li>
-    <li>A metadata name="description" <a href="http://www.w3schools.com/tags/tag_meta.asp">element</a>.</li>
-    <li>A metadata name="canonical" <a
-            href="http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html">element</a>.
-    </li>
-    <li>A metadata name="original-source" <a
-            href="http://googlenewsblog.blogspot.com/2010/11/credit-where-credit-is-due.html">element(s)</a>.
-    </li>
-    <li>A metalink rel="copyright" <a href="http://htmlhelp.com/reference/html40/head/link.html">element</a>, defining
-        sharing and derivation rights
-    </li>
-    <li>
-        A correct set of <a href="http://ogp.me/">OG-properties</a>, as
-        used by Facebook.
-    </li>
-</ul>
-<p>This is not OuPP specific though, it is good webdesign practice in general. If possible make your pages W3C
-    valid.</p>
-<p>
-    <a id="dns"></a>
-</p>
 
 <p>
     <a id="domain"></a>
@@ -288,6 +214,54 @@
     <a id="specs"></a>
 </p>
 
+<h2>Cascading-rules</h2>
+
+<p>
+    It is possible to supply a page script as well as a domain script. In this case the
+    processor will cascade (combine) the values in the following order:
+</p>
+<ol>
+    <li>domain script</li>
+    <li>page script</li>
+</ol>
+<p>
+    The scripts are combined and duplicate values are overwritten in the order given above. 
+    Participants can never be overwritten through cascading scripts, to combine participants with the same ID they need
+    to have different roles.
+</p>
+
+<p>
+    Using this logic it is possible to specify global participants in the /PARTICIPATION.TXT that can never be excluded
+    by
+    button or page scripts. For instance the website owner and such. If such a recipient such has a percentage share,
+    his
+    share can never be reduced nor excluded.
+</p>
+
+<h2>Helpfull (X)HTML elements</h2>
+
+<p>Additional metadata / properties that can help the payments system to make intelligent decisions:</p>
+<ul>
+    <li>The HTML &lt;title&gt; element.</li>
+    <li>A metadata name="description" <a href="http://www.w3schools.com/tags/tag_meta.asp">element</a>.</li>
+    <li>A metadata name="canonical" <a
+            href="http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html">element</a>.
+    </li>
+    <li>A metadata name="original-source" <a
+            href="http://googlenewsblog.blogspot.com/2010/11/credit-where-credit-is-due.html">element(s)</a>.
+    </li>
+    <li>A metalink rel="copyright" <a href="http://htmlhelp.com/reference/html40/head/link.html">element</a>, defining
+        sharing and derivation rights
+    </li>
+    <li>
+        A correct set of <a href="http://ogp.me/">OG-properties</a>, as
+        used by Facebook.
+    </li>
+</ul>
+<p>This is not Mobbr specific though, it is good web design practice in general. If possible make your pages W3C
+    valid.</p>
+    
+    
 <h2>Specification</h2>
 
 ![Railroad diagram of the script language]

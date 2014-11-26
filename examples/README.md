@@ -1,8 +1,8 @@
 #Examples
 
-- [Preparing a web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#html-example)
+- [Preparing a web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
 
-##HTML example
+##Preparing a webpage
 
 The Mobbr API can 'pay' URL's. It will do a callback to the URL and read the payment data from a metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
 
@@ -52,6 +52,11 @@ A very simple web page would look like this.
     
 This page would show a button, when the button is clicked the Mobbr lightbox opens over the site and allows users to do payments.
     
+The button can also have another URL as argument in which case the API would callback that URL.
+
+    <!-- the visible button, include AS IS -->
+    <script type="text/javascript">mobbr.buttonMedium("https://some.other.url/page.html", "EUR");</script>
+    
 Supported button types:
 - buttonMedium
 - buttonLarge
@@ -59,6 +64,8 @@ Supported button types:
 
 Supported currencies:
 - all FIAT currencies including BTC
+
+Example of the opened lightbox:
 
 ![Example of the opened lightbox]
 (http://i.imgur.com/0xVTJcZ.png)

@@ -5,77 +5,70 @@
 
 <p>
     In social collaboration every participant will have his own share of total added value. 
-    The Mobbr script is used to distribute payments and donations among many participants in a collaboration by ratio that share. 
+    The Mobbr script is used to distribute payments and donations among many participants in a collaboration by ratio of that share. 
 </p>
 <ul>
     <li>
-        <a href="#xhtml">Page-scripts</a>
+        <a href="#page">Page-scripts</a>
     </li>
     <li>
         <a href="#domain">Domain-scripts</a>
     </li>
-</ul>
-<p>
-    The Script is in <a href="http://en.wikipedia.org/wiki/JSON">JSON</a>
-    (Javascript Object Notation). JSON-syntaxis can
-    be checked using a <a href="http://www.jsonlint.com/">online parser</a>
-    and JSON-support is good in every major programming language as well as
-    in Javascript.
-</p>
-<ul>
+    <li>
+        <a href="#cascading">Combining scripts</a>
+    </li>
+    <li>
+        <a href="#xhtml">Additional HTML elements</a>
+    </li>
     <li>
         <a href="#specs">Specification</a>
     </li>
 </ul>
 
 <p>
-    <a id="xhtml"></a>
+    <a id="page"></a>
 </p>
 
 <h2>Page-scripts (inline)</h2>
 
 <p>
-    To turn your web pages into payable objects without buttons or other active elements,
-    you need to add metadata to your page. We've chosen to use a <a href="http://www.json.org/">JSON</a>
-    description in the content-part of a <code>&lt;meta&gt;</code>
-    tags in the <code>&lt;head&gt; </code>
-    of your web page. This approach allows for W3C valid (X)HTML.
+    To turn your web pages into payable objects you need to add metadata to your page. Put a <a href="http://www.json.org/">JSON</a>
+    description in the content-part of a <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt; </code>
+    of your web page.
 </p>
 
-<p>
-    An example:
-</p>
-    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-        &lt;!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-        &lt;html
-        xmlns=http://www.w3.org/1999/xhtml
-        xml:lang="en" &gt;
-        &lt;head&gt;
-        <b>&lt;meta name="participation" content='{
-            "id-base" : "https://api.mobbr.com/id/",
-            "title" : "The iPhony4",
-            "description" : "Article about some fictious planned obscolescence device",
-            "participants" : 
-            [
-                {
-                    "id": "patman",
-                    "role": "author",
-                    "share": "3"
-                },
-                {
-                    "id": "johnny",
-                    "role": "author",
-                    "share": "3"
-                },
-                {
-                    "id": "zaplog",
-                    "role": "platform",
-                    "share": "1"
-                }
-            ]
-        }'/&gt;</b></code></pre>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html
+xmlns=http://www.w3.org/1999/xhtml
+xml:lang="en" &gt;
+&lt;head&gt;
+<b>&lt;meta name="participation" content='{
+    "id-base" : "https://api.mobbr.com/id/",
+    "title" : "The iPhony4",
+    "description" : "Article about some fictious planned obscolescence device",
+    "participants" : 
+    [
+        {
+            "id": "patman",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "johnny",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "zaplog",
+            "role": "platform",
+            "share": "1"
+        }
+    ]
+}'/&gt;</b></code></pre>
+
 <p>
     <i><strong>
         <small>Note: because JSON requires double quotes, the entire JSON definition itself
@@ -98,16 +91,17 @@
     As an alternative a HTML-LINK can be used, linking to <a href="https://mobbr.com/mobbr-payment_info.json">an
     external JSON-description</a>. Like below:
 </p>
-    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-        &lt;!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-        &lt;html
-        xmlns=http://www.w3.org/1999/xhtml
-        xml:lang="en" &gt;
-        &lt;head&gt;
-        <b>&lt;link rel="participation" type="application/json"
-            href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html
+xmlns=http://www.w3.org/1999/xhtml
+xml:lang="en" &gt;
+&lt;head&gt;
+<b>&lt;link rel="participation" type="application/json"
+    href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
 
 <p>
     <a id="domain"></a>
@@ -200,18 +194,16 @@
        }
    }
 ]</code></pre>
-<p>
-    <a href="#specs">See below</a> for a full description of the JSON-elements.
-</p>
 
 <p>
-    It is possible that different patterns match the same URL. Properties are then cascaded (if not present)
+    It is allowed that different patterns match the same URL. Properties are then cascaded (if not present)
     or overwritten (if already present) in top to bottom order, combining all matching rules.
     This cascading may not lead to duplicate participants being inserted which is allowed as long
     as the roles differ.
 </p>
+
 <p>
-    <a id="specs"></a>
+    <a id="cascading"></a>
 </p>
 
 <h2>Cascading-rules</h2>
@@ -232,10 +224,12 @@
 
 <p>
     Using this logic it is possible to specify global participants in the /PARTICIPATION.TXT that can never be excluded
-    by
-    button or page scripts. For instance the website owner and such. If such a recipient such has a percentage share,
-    his
-    share can never be reduced nor excluded.
+    by button or page scripts. For instance the website owner and such. If such a recipient such has a percentage share,
+    his share can never be reduced nor excluded.
+</p>
+
+<p>
+    <a id="xhtml"></a>
 </p>
 
 <h2>Helpfull (X)HTML elements</h2>
@@ -262,10 +256,13 @@
     valid.</p>
     
     
+<p>
+    <a id="specs"></a>
+</p>
+
 <h2>Specification</h2>
 
-![Railroad diagram of the script language]
-(https://api.mobbr.com/images/open-micropayment_protocol-OuPP-json-spec.png)
+<img src="https://api.mobbr.com/images/open-micropayment_protocol-OuPP-json-spec.png" />
 
 <p>The required properties for every page are:</p>
 

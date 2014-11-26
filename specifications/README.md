@@ -102,30 +102,29 @@
         xmlns=http://www.w3.org/1999/xhtml
         xml:lang="en" &gt;
         &lt;head&gt;
-        <b>&lt;meta name="participation" content='
-            {
+        <b>&lt;meta name="participation" content='{
             "id-base" : "https://api.mobbr.com/id/",
             "title" : "The iPhony4",
             "description" : "Article about some fictious planned obscolescence device",
-            "participants" : [
-            {
-            "id": "patman",
-            "role": "author",
-            "share": "3"
-            },
-            {
-            "id": "johnny",
-            "role": "author",
-            "share": "3"
-            },
-            {
-            "id": "zaplog",
-            "role": "platform",
-            "share": "1"
-            }
+            "participants" : 
+            [
+                {
+                    "id": "patman",
+                    "role": "author",
+                    "share": "3"
+                },
+                {
+                    "id": "johnny",
+                    "role": "author",
+                    "share": "3"
+                },
+                {
+                    "id": "zaplog",
+                    "role": "platform",
+                    "share": "1"
+                }
             ]
-            }
-            '/&gt;</b></code></pre>
+        }'/&gt;</b></code></pre>
 <p>
     <i><strong>
         <small>Note: because JSON requires double quotes, the entire JSON definition itself
@@ -221,66 +220,60 @@
     website.
 </p>
     <pre><code>[
-        {
-        "url-pattern" : "*",
-        "participation-info":
-        {
-        "id-base" : "https://api.mobbr.com/id/",
-        "participants" :
-        [
-        {
-        "id" : "83495",
-        "role" : "website-owner",
-        "share" : "1"
-        }
-        ]
-        }
-        },
-        {
-        "url-pattern" : "/article/*",
-        "participation-info" :
-        {
-        "id-base" : "https://api.mobbr.com/id/",
-        "type" : "fixed-price",
-        "amount" : "1.5",
-        "currency" : "EUR",
-        "participants" :
-        [
-        {
-        "id" : "83495",
-        "role" : "distributer",
-        "share" : "1"
-        },
-        {
-        "id" : "6424",
-        "role" : "author",
-        "share" : "4"
-        },
-        {
-        "id" : "964242",
-        "role" : "reviewer",
-        "share" : "1"
-        }
-        ]
-        }
-        },
-        {
-        "url-pattern" : "/article/*/picture",
-        "participation-info" :
-        {
-        "id-base" : "https://api.mobbr.com/id/",
-        "amount" : "1.5",
-        "participants" :
-        [
-        {
-        "id" : "83495",
-        "role" : "photographer",
-        "share" : "1"
-        }
-        ]
-        }
-        }
-        ]</code></pre>
+   {
+       "url-pattern": "*",
+       "participation-info": {
+           "id-base": "https://api.mobbr.com/id/",
+           "participants": [
+               {
+                   "id": "83495",
+                   "role": "website-owner",
+                   "share": "1"
+               }
+           ]
+       }
+   },
+   {
+       "url-pattern": "/article/*",
+       "participation-info": {
+           "id-base": "https://api.mobbr.com/id/",
+           "type": "fixed-price",
+           "amount": "1.5",
+           "currency": "EUR",
+           "participants": [
+               {
+                   "id": "83495",
+                   "role": "distributer",
+                   "share": "1"
+               },
+               {
+                   "id": "6424",
+                   "role": "author",
+                   "share": "4"
+               },
+               {
+                   "id": "964242",
+                   "role": "reviewer",
+                   "share": "1"
+               }
+           ]
+       }
+   },
+   {
+       "url-pattern": "/article/*/picture",
+       "participation-info": {
+           "id-base": "https://api.mobbr.com/id/",
+           "amount": "1.5",
+           "participants": [
+               {
+                   "id": "83495",
+                   "role": "photographer",
+                   "share": "1"
+               }
+           ]
+       }
+   }
+]</code></pre>
 <p>
     <a href="#specs">See below</a> for a full description of the JSON-elements.
 </p>
@@ -296,6 +289,7 @@
 </p>
 
 <h2>Specification</h2>
+
 ![Railroad diagram of the script language]
 (https://api.mobbr.com/images/open-micropayment_protocol-OuPP-json-spec.png)
 
@@ -425,45 +419,42 @@
 <p>
     Below an example of a JSON transaction description with external ID's.
 </p>
-    <pre><code>
-        {
-        "id-base" : "https://api.mobbr.com/id/",
-        "title" : "The iPhony4",
-        "description" : "Article about some fictious planned obscolescence device",
-        "participants" : [
-        {
-        "id": "Paramatman",
-        "comment": "Relative URL, relative to id-base",
-        "role": "author",
-        "share": "3"
-        },
-        {
-        <b>"id": "mailto:patman@zaplog.nl",</b>
-        "comment" : "Straight email-address URL",
-        "role": "co-author",
-        "share": "3"
-        },
-        {
-        <b>"id": "http://gravatar.com/patricksavalle",</b>
-        "comment": "This is a URL of a person outside the id-base",
-        "role": "co-author",
-        "share": "1"
-        },
-        {
-        <b>"id": "https://twitter.com/#!/mobbrcom",</b>
-        "comment": "The twitter-URL of @mobbrcom",
-        "role": "co-author",
-        "share": "1"
-        } ,
-        {
-        <b>"id": "bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L",</b>
-        "comment": "The bitcoin address to receive payments",
-        "role": "co-author",
-        "share": "1"
-        }
-
-        ]
-        }
-    </code></pre>
+    <pre><code>{
+   "id-base": "https://api.mobbr.com/id/",
+   "title": "The iPhony4",
+   "description": "Article about some fictious planned obscolescence device",
+   "participants": [
+       {
+           "id": "Paramatman",
+           "comment": "Relative URL, relative to id-base",
+           "role": "author",
+           "share": "3"
+       },
+       {
+           <b>"id": "mailto:patman@zaplog.nl",
+           </b>"comment": "Straight email-address URL",
+           "role": "co-author",
+           "share": "3"
+       },
+       {
+           <b>"id": "http://gravatar.com/patricksavalle",
+           </b>"comment": "This is a URL of a person outside the id-base",
+           "role": "co-author",
+           "share": "1"
+       },
+       {
+           <b>"id": "https://twitter.com/#!/mobbrcom",
+           </b>"comment": "The twitter-URL of @mobbrcom",
+           "role": "co-author",
+           "share": "1"
+       },
+       {
+           <b>"id": "bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L",
+           </b>"comment": "The bitcoin address to receive payments",
+           "role": "co-author",
+           "share": "1"
+       }
+   ]
+}</code></pre>
 <p>How and if such external ID's are handled, is up to the payment-provider.</p>
 </div>

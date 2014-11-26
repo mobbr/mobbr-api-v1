@@ -80,9 +80,6 @@
         <small>Note: this construction is W3C valid.</small>
     </i>
 </p>
-<p>
-    When used together with button- and / or domain-scripts, cascading-rules apply, see below.
-</p>
 
 <h2>Page-scripts (external)</h2>
 
@@ -118,7 +115,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 </p>
 
 <p>
-    When used together with button- and / or page-scripts, cascading-rules apply, see below.
+    When used together with page-scripts, cascading-rules apply, see below.
 </p>
 
 <p>
@@ -256,35 +253,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
 <h2>Specification</h2>
 
-<img src="https://api.mobbr.com/images/open-micropayment_protocol-OuPP-json-spec.png" />
-
-<p>The required properties for every page are:</p>
-
-<p>Required for all cases that specify 'relative participants'.</p>
-<ul>
-    <li>
-        <code>"id-base"</code>
-        - URL (-prefix) that, combined with an ID, forms an URL uniquely identifying a person or member
-        within that service. Together, the id-base and an relative ID should form
-        a valid URL. If the id-base is ommitted, every recipient should be a full URL uniquely identifying the recipient, 
-        other ID's are assumed to be Mobbr usernames.
-    </li>
-</ul>
-<p>Required if scripts are used for fixed-price payments.</p>
+<p>Possible script tags:</p>
 <ul>
     <li>
         <code>"type"</code>
-        - The <a href="#types">type</a>
-        of the requested payment or payment, if none is given,
-        "payment" will be assumed. If type "pledge" is used, payments are escrowed until the type is set to "payment".
-    </li>
-</ul>
-<p>The optional properties for every page are:</p>
-<ul>
-    <li>
-        <code>"url"</code>
-        - The URL identifying the canonical URL if it is not the URL on which the
-        button is placed. Not allowed / ignored for metatag-version of JSON.
+        - The type of transaction, if none is given, "payment" will be assumed. If type "pledge" is used, payments are escrowed until the type is set to "payment".
     </li>
     <li>
         <code>"image"</code>
@@ -292,14 +265,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     </li>
     <li>
         <code>"participants"</code>
-        - A JSON-list of one or more participations. Not all
-        payment-processors support multiple participants.
+        - A JSON-array of one or more participants. 
         <ul>
             <li>
                 <code>"id"</code>
-                - The ID with which the payment-processor can identify the recipient. Combined
-                with the "id-base" is forms a valid URL. Most probably to the profile-page of the user. It can
-                also be a full, valid URL in which case the contents (response) of the URL must be an email address.
+                - The ID (email, username, OAUTH profile) of the recipient. 
             </li>
             <li>
                 <code>"role"</code>
@@ -329,11 +299,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     </li>
     <li>
         <code>"language"</code>
-        - To ISO code of a language.
+        - To ISO code of a language. The HTML metadata will be analysed and used if none is given
     </li>
     <li>
         <code>"keywords"</code>
-        - One or many keywors or tags
+        - One or many keywors or tags. The HTML metadata keywords will be added to these.
     </li>
 </ul>
 <p>
@@ -344,7 +314,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
 <p>
     Recipients are identified by id's that, in principle, must be full URL's or email addresses or Mobbr usernames. The URL's must be
-    of profiles of sites that have Mobbr OAUTH support.
+    of user profiles of sites that have Mobbr OAUTH support.
 </p>
 <p>
     Also possible are bitcoin addresses. These offer good anonimity and are directly payable in bitcoin. Also restricted
@@ -355,20 +325,19 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     Below an example of a JSON transaction description with external ID's.
 </p>
     <pre><code>{
-   "id-base": "https://mobbr.com/#/person/",
    "title": "The iPhony4",
    "description": "Article about some fictious planned obscolescence device",
    "participants": 
    [
        {
-           "id": "Paramatman",
-           "comment": "Relative URL, relative to id-base",
+           "id": "https://mobbr.com/#/person/Paramatman",
+           "comment": "Absolute URL, in this case a Mobbr profile",
            "role": "author",
            "share": "3"
        },
        {
-           "id": "https://mobbr.com/#/person/Paramatman",
-           "comment": "Absolute URL, in this case a Mobbr profile",
+           "id": "Paramatman",
+           "comment": "Relative URL, Mobbr profile is assumed",
            "role": "author",
            "share": "3"
        },
@@ -379,8 +348,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
            "share": "3"
        },
        {
+           <b>"id": "patman@zaplog.nl",
+           </b>"comment": "Short cut email-address",
+           "role": "review-author",
+           "share": "3"
+       },
+       {
            <b>"id": "http://gravatar.com/patricksavalle",
-           </b>"comment": "This is a URL of a person outside the id-base",
+           </b>"comment": "A supported profile",
            "role": "co-author",
            "share": "1"
        },
@@ -393,6 +368,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
        {
            <b>"id": "bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L",
            </b>"comment": "The bitcoin address to receive payments",
+           "role": "co-author",
+           "share": "1"
+       },
+       {
+           <b>"id": "tel:+31638677592",
+           </b>"comment": "Telephone number of recipient",
            "role": "co-author",
            "share": "1"
        }

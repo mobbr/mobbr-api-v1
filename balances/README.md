@@ -18,7 +18,6 @@ Request
 
     curl 
     -X GET 
-    -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     https://test-api.mobbr.com/api_v1/balances
@@ -62,7 +61,6 @@ Request
 
     curl 
     -X GET 
-    -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     https://test-api.mobbr.com/api_v1/balances/domain?domain=github.com&base_currency=BTC
 
@@ -111,7 +109,6 @@ Request
 
     curl 
     -X GET 
-    -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     https://test-api.mobbr.com/api_v1/balances/uri?url=https://github.com/identifi/identifi
 

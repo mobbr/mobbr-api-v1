@@ -1,13 +1,13 @@
-#URI (tasks) API
+#URIS (TASKS) API
 
 Listing of tasks. In Mobbr an URL becomes a task once it received a pledge or payment. For URL's to receive payments they need to have the required metadata.
 
-- [Get info *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments#get-info)
-- [List task *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments#list-tasks)
+- [Get info *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris#get-info)
+- [List task *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris#list-tasks)
 
 ##Get info
 
-Get extended information on a URL (task)
+Get extended information on a URL (task). The info contains some statistics but also the public payin/deposit addresses of the task. Also returned are the payment script and the HTML metadata of the URL.
 
      GET /api_v1/uris/info
 

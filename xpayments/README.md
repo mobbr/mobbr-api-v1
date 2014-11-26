@@ -302,11 +302,13 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "message": "Limit address reuse as much as possible",
                 "currency_iso": "BTC",
-                "addresses": [
+                "addresses": 
+                [
                     {
                         "bitcoin": "12NLcKZdn2P7GAWWimiSedGECW1mWgW5V3"
                     }

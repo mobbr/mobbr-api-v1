@@ -23,6 +23,7 @@ The API accepts the following payment destinations:
 
 - [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
 - [Payments] (https://github.com/mobbr/mobbr-api-v1/tree/master/payments)
+- [Uris (tasks)] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
 - [Withdraw and deposit] (https://github.com/mobbr/mobbr-api-v1/tree/master/xpayments)
 - [User] (https://github.com/mobbr/mobbr-api-v1/tree/master/user)
 - [Balances] (https://github.com/mobbr/mobbr-api-v1/tree/master/balances)
@@ -31,7 +32,8 @@ The API accepts the following payment destinations:
 - [Keywords] (https://github.com/mobbr/mobbr-api-v1/tree/master/keywords)
 - [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
 - [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
-- [Uris] (https://github.com/mobbr/mobbr-api-v1/tree/master/uris)
+
+- [Examples] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
 
 ##CONCEPTS
 

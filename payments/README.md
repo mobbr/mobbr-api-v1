@@ -57,15 +57,18 @@ Request
 Response, arrays reduced to a single element
 
     {
-        "result": {
+        "result": 
+        {
             "hash": null,
-            "script": {
+            "script": 
+            {
                 "image": "https://avatars3.githubusercontent.com/u/3898718?v=3&s=400",
                 "url": "https://github.com/identifi/identifi",
                 "language": "EN",
                 "title": "Github repository identifi/identifi",
                 "description": "Identifi implementation built on Bitcoin code",
-                "participants": [
+                "participants": 
+                [
                     {
                         "id": "mailto:patrick@mobbr.com",
                         "role": "Platform-owner",
@@ -75,12 +78,14 @@ Response, arrays reduced to a single element
                         ".gravatar": "7194e8d48fa1d2b689f99443b767316c"
                     }
                 ],
-                "keywords": [
+                "keywords": 
+                [
                     "software development"
                 ],
                 "message": "text",
                 "type": "donation",
-                ".script-type": [
+                ".script-type": 
+                [
                     "api"
                 ],
                 ".amount": null,
@@ -118,13 +123,16 @@ Request
 Response
 
     {
-        "result": {
+        "result": 
+        {
             "hash": "05b921e21ad2a78d00e7b1ec721baaa8",
-            "script": {
+            "script": 
+            {
                 "id-base": "https://mobbr.com/#/person/",
                 "type": "pay",
                 "title": "Payment to 'https://mobbr.com/#/person/patrick'",
-                "participants": [
+                "participants": 
+                [
                     {
                         "id": "https://mobbr.com/#/person/patrick",
                         "share": 1,
@@ -154,7 +162,8 @@ The data argument can also contain JSON scripts that describe a complex payment,
         "language": "EN",
         "title": "Any title",
         "description": "Any description",
-        "participants": [
+        "participants": 
+        [
             {
                 "id": "mailto:octocat@github.com",
                 "role": "Platform-owner",
@@ -207,15 +216,18 @@ Request
 Response
 
     {
-        "result": {
+        "result": 
+        {
             "payment_id": "302302b4dd1280e2e9a38793de92f210",
-            "payment_script": {
+            "payment_script": 
+            {
                 "image": "https://avatars3.githubusercontent.com/u/3898718?v=3&s=400",
                 "url": "https://github.com/identifi/identifi",
                 "language": "EN",
                 "title": "Github repository identifi/identifi",
                 "description": "Identifi implementation built on Bitcoin code",
-                "participants": [
+                "participants": 
+                [
                     {
                         "id": "mailto:octocat@github.com",
                         "role": "Platform-owner",
@@ -226,12 +238,14 @@ Response
                         ".gravatar": "7194e8d48fa1d2b689f99443b767316c"
                     }
                 ],
-                "keywords": [
+                "keywords": 
+                [
                     "github.com"
                 ],
                 "message": "Text.",
                 "type": "donation",
-                ".script-type": [
+                ".script-type": 
+                [
                     "api"
                 ],
                 ".amount": 1,
@@ -276,7 +290,8 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "id": "302302b4dd1280e2e9a38793de92f210",
                 "url": "https://github.com/identifi/identifi",
@@ -319,7 +334,8 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "url": "https://github.com/identifi/identifi",
                 "datetime": "2014-11-20 13:36:22",
@@ -356,7 +372,8 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "id": "302302b4dd1280e2e9a38793de92f210",
                 "url": "https://github.com/identifi/identifi",
@@ -407,7 +424,8 @@ Request
 Response
 
     {
-        "result": {
+        "result": 
+        {
             "id": "302302b4dd1280e2e9a38793de92f210",
             "uri": "https://github.com/identifi/identifi",
             "ref_uri": null,
@@ -427,13 +445,15 @@ Response
             "memo": null,
             "domain": "github.com",
             "favicon": "https://www.google.com/s2/favicons?domain=github.com",
-            "keywords": [
+            "keywords": 
+            [
                 {
                     "keyword": "github.com",
                     "language_iso": "EN"
                 }
             ],
-            "receivers": [
+            "receivers": 
+            [
                 {
                     "gravatar": "e30d5696b25f0dcd1bdf609753602977",
                     "username": "me@email.com",
@@ -446,7 +466,8 @@ Response
                     "unclaim_id": "3264"
                 }
             ],
-            "senders": [
+            "senders": 
+            [
                 {
                     "gravatar": "e6032c3bbb3ece98d2782862594b08c2",
                     "username": "Patrick",
@@ -485,21 +506,22 @@ Request
 Response
 
     {
-        "result": [
-                {
-                    "currency_iso": "EUR",
-                    "amount": "0.71657143",
-                    "share_id": "3264",
-                    "recipient_id": "mailto:siriuis@dfriki.if",
-                    "payment_id": "302302b4dd1280e2e9a38793de92f210",
-                    "url": "https://github.com/identifi/identifi",
-                    "datetime": "2014-11-20 13:36:22",
-                    "title": "Github repository identifi/identifi",
-                    "description": "Identifi implementation built on Bitcoin code",
-                    "memo": null,
-                    "username": "0b2d4a0e4cbaa624002495e884d2cfa0",
-                    "gravatar": "e30d5696b25f0dcd1bdf609753602977"
-                }
+        "result": 
+        [
+            {
+                "currency_iso": "EUR",
+                "amount": "0.71657143",
+                "share_id": "3264",
+                "recipient_id": "mailto:siriuis@dfriki.if",
+                "payment_id": "302302b4dd1280e2e9a38793de92f210",
+                "url": "https://github.com/identifi/identifi",
+                "datetime": "2014-11-20 13:36:22",
+                "title": "Github repository identifi/identifi",
+                "description": "Identifi implementation built on Bitcoin code",
+                "memo": null,
+                "username": "0b2d4a0e4cbaa624002495e884d2cfa0",
+                "gravatar": "e30d5696b25f0dcd1bdf609753602977"
+            }
         ]
     }
 	
@@ -527,7 +549,8 @@ Response
 
     {
         "result": [],
-        "message": {
+        "message": 
+        {
             "text": "0 share(s) revoked",
             "type": "info"
         }
@@ -556,7 +579,8 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "url": "https://github.com/mobbr/mobbr-frontend/issues/189",
                 "title": "Github repository mobbr/mobbr-frontend, issue #189",
@@ -601,7 +625,8 @@ Response
 
     {
         "result":null,
-        "message": {
+        "message": 
+        {
             "type":"error",
             "text":"Cannot claim this pledge because task is still in pledging mode"
         }
@@ -630,7 +655,8 @@ Request
 Response
 
     {
-        "result": [
+        "result": 
+        [
             {
                 "id": "006d0653d76f7fa398cef8e0c0fcb315",
                 "domain": null,
@@ -670,7 +696,8 @@ Response
 
     {
         "result": [],
-        "message": {
+        "message": 
+        {
             "text": "0 payments(s) revoked",
             "type": "info"
         }

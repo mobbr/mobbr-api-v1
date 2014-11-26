@@ -27,7 +27,7 @@ A very simple web page would look like this.
                 [
                     {"id":"Patrick","share":"2","role":"administrator"},
                     {"id":"Ernesto","share":"1","role":"developer"},
-                    {"id":"multi","share":"10","role":"architect"},
+                    {"id":"some@email.com","share":"10","role":"architect"},
                     {"id":"Patrick","role":"owner","share":"10%"}
                 ]
             }'>
@@ -59,3 +59,6 @@ Supported button types:
 
 Supported currencies:
 - all FIAT currencies including BTC
+
+![Example of the opened lightbox]
+(http://i.imgur.com/0xVTJcZ.png)

@@ -25,8 +25,10 @@ Request
 Response
 
     {
-        "result": {
-            "balances": [
+        "result": 
+        {
+            "balances": 
+            [
                 {
                     "updatedatetime": "2014-11-14 13:59:07",
                     "amount": "0.15924988",
@@ -67,8 +69,10 @@ Request
 Response
 
     {
-        "result": {
-            "balances": [
+        "result": 
+        {
+            "balances": 
+            [
                 {
                     "updatedatetime": "2014-11-14 13:59:07",
                     "exchange_rate": "1",
@@ -115,8 +119,10 @@ Request
 Response
 
     {
-        "result": {
-            "balances": [
+        "result": 
+        {
+            "balances": 
+            [
                 {
                     "updatedatetime": "2014-11-14 13:59:07",
                     "exchange_rate": "1",

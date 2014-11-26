@@ -33,6 +33,8 @@ The API accepts the following payment destinations:
 - [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
 - [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
 
+##Examples and specifications
+
 - [Examples] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
 
 ##CONCEPTS

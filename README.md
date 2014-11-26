@@ -66,9 +66,11 @@ If you don't supply this header, you will get a `400 Bad Request` response.
 
 Responses can be requested in `application/xml` and `application/json`, use the `Accept` header for this. If the header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
+The responses contain two field: `result` and `message`, both of which can be NULL.
+
 ##MESSAGES AND ERROR-HANDLING
 
-Errors are signaled by HTTP-code. The client should also check the `message` field of a response. We have type `info`, `warning` and `error`. 
+Errors are signaled by HTTP-code. The client should also check the `message` field of a response. We have type `info`, `warning` and `error`. The field is `NULL` for no message. 
 
     {
         "result":null,
@@ -109,7 +111,7 @@ Lists are limited to 100 items default. To retrieve more items, use the paginati
 
 ##OUR OPEN-SOURCE CLIENT
 
-Our own website (the AngularJS browser-client) is available as open-source on /mobbr/mobbr-frontend. You can use it to build your own payment website on your own domain. In the Mobbr philosophy everybody who adds value, should receive his or her fair share, so it would only be logical that you include yourself in the recipients / participants of the transactions you facilitate, taking your fair share.
+A fully functional client (our own AngularJS browser-app) is available as open-source on https://github.com/mobbr/mobbr-frontend. You can use it to build your own payment website on your own domain. In the Mobbr philosophy everybody who adds value, should receive his or her fair share, so it would only be logical that you include yourself in the recipients / participants of the transactions you facilitate, taking your fair share.
 
 ##TEST-API / SANDBOX
 

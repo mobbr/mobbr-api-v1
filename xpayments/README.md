@@ -296,7 +296,6 @@ Request
     curl 
     -X GET 
     -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
-    -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     https://test-api.mobbr.com/api_v1/xpayments/list_addresses
     

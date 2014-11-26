@@ -1,5 +1,5 @@
-<div id="body">
-<h1>MOBBR script syntax</h1>
+<div>
+<h1>Payment script syntax</h1>
 
 <h2>Introduction</h2>
 
@@ -38,48 +38,47 @@
 </p>
 
 <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-&lt;html
-xmlns=http://www.w3.org/1999/xhtml
-xml:lang="en" &gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns=http://www.w3.org/1999/xhtml xml:lang="en" &gt;
 &lt;head&gt;
-<b>&lt;meta name="participation" content='{
-    "id-base" : "https://api.mobbr.com/id/",
-    "title" : "The iPhony4",
-    "description" : "Article about some fictious planned obscolescence device",
-    "participants" : 
-    [
-        {
-            "id": "patman",
-            "role": "author",
-            "share": "3"
-        },
-        {
-            "id": "johnny",
-            "role": "author",
-            "share": "3"
-        },
-        {
-            "id": "zaplog",
-            "role": "platform",
-            "share": "1"
-        }
-    ]
-}'/&gt;</b></code></pre>
+    <b>&lt;meta name="participation" content='{
+        "title" : "The iPhony4",
+        "description" : "Article about some fictious planned obsolescence device",
+        "keywords":
+        [
+            "planned obsolescence"
+        ]
+        "participants" : 
+        [
+            {
+                "id": "patman",
+                "role": "author",
+                "share": "3"
+            },
+            {
+                "id": "johnny",
+                "role": "author",
+                "share": "3"
+            },
+            {
+                "id": "zaplog",
+                "role": "platform",
+                "share": "1"
+            }
+        ]
+    }'/&gt;</b></code></pre>
 
 <p>
-    <i><strong>
+    <i>
         <small>Note: because JSON requires double quotes, the entire JSON definition itself
             (the content-attribute) should be enclosed in single quotes.
         </small>
-    </strong></i>
+    </i>
 </p>
 <p>
-    <i><strong>
+    <i>
         <small>Note: this construction is W3C valid.</small>
-    </strong></i>
+    </i>
 </p>
 <p>
     When used together with button- and / or domain-scripts, cascading-rules apply, see below.
@@ -88,20 +87,16 @@ xml:lang="en" &gt;
 <h2>Page-scripts (external)</h2>
 
 <p>
-    As an alternative a HTML-LINK can be used, linking to <a href="https://mobbr.com/mobbr-payment_info.json">an
-    external JSON-description</a>. Like below:
+    As an alternative a HTML-LINK can be used, linking to an external JSON-description. Like below:
 </p>
 
 <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-&lt;html
-xmlns=http://www.w3.org/1999/xhtml
-xml:lang="en" &gt;
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;html xmlns=http://www.w3.org/1999/xhtml xml:lang="en" &gt;
 &lt;head&gt;
-<b>&lt;link rel="participation" type="application/json"
-    href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
+    <b>&lt;link rel="participation" type="application/json"
+        href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
 
 <p>
     <a id="domain"></a>
@@ -111,7 +106,7 @@ xml:lang="en" &gt;
 
 <p>
     As an alternative to tagging individual pages with metadata, a domain
-    or website can specify global settings in a PARTICIPATION.TXT file. This
+    or website can specify global settings in a /PARTICIPATION.TXT file. This
     file needs to be placed in the root of the domain, like for
     instance the <a href="http://www.robotstxt.org/">ROBOTS.TXT</a>
     file.
@@ -142,11 +137,12 @@ xml:lang="en" &gt;
     <pre><code>[
    {
        "url-pattern": "*",
-       "participation-info": {
-           "id-base": "https://api.mobbr.com/id/",
-           "participants": [
+       "participation-info": 
+       {
+           "participants": 
+           [
                {
-                   "id": "83495",
+                   "id": "John",
                    "role": "website-owner",
                    "share": "1"
                }
@@ -155,38 +151,36 @@ xml:lang="en" &gt;
    },
    {
        "url-pattern": "/article/*",
-       "participation-info": {
-           "id-base": "https://api.mobbr.com/id/",
-           "type": "fixed-price",
-           "amount": "1.5",
-           "currency": "EUR",
-           "participants": [
+       "participation-info": 
+        {
+           "participants": 
+           [
                {
-                   "id": "83495",
-                   "role": "distributer",
-                   "share": "1"
+                   "id": "John",
+                   "role": "distributor",
+                   "share": "10"
                },
                {
-                   "id": "6424",
+                   "id": "Hank",
                    "role": "author",
                    "share": "4"
                },
                {
-                   "id": "964242",
+                   "id": "Philip",
                    "role": "reviewer",
-                   "share": "1"
+                   "share": "10"
                }
            ]
        }
    },
    {
        "url-pattern": "/article/*/picture",
-       "participation-info": {
-           "id-base": "https://api.mobbr.com/id/",
-           "amount": "1.5",
-           "participants": [
+       "participation-info": 
+       {
+           "participants": 
+           [
                {
-                   "id": "83495",
+                   "id": "Susy",
                    "role": "photographer",
                    "share": "1"
                }
@@ -232,7 +226,7 @@ xml:lang="en" &gt;
     <a id="xhtml"></a>
 </p>
 
-<h2>Helpfull (X)HTML elements</h2>
+<h2>Helpful (X)HTML elements</h2>
 
 <p>Additional metadata / properties that can help the payments system to make intelligent decisions:</p>
 <ul>
@@ -272,8 +266,8 @@ xml:lang="en" &gt;
         <code>"id-base"</code>
         - URL (-prefix) that, combined with an ID, forms an URL uniquely identifying a person or member
         within that service. Together, the id-base and an relative ID should form
-        a valid URL. If the id-base
-        is ommitted, every recipient should be a full URL, identifying the recipient.
+        a valid URL. If the id-base is ommitted, every recipient should be a full URL uniquely identifying the recipient, 
+        other ID's are assumed to be Mobbr usernames.
     </li>
 </ul>
 <p>Required if scripts are used for fixed-price payments.</p>
@@ -282,45 +276,19 @@ xml:lang="en" &gt;
         <code>"type"</code>
         - The <a href="#types">type</a>
         of the requested payment or payment, if none is given,
-        "payment" will be assumed. Not all systems support multipe payment-types.
-    </li>
-    <li>
-        <code>"amount"</code>
-        - The requested price, if appropriate for the type.
-    </li>
-    <li>
-        <code>"currency"</code>
-        - The currency in which the price is expressed.
+        "payment" will be assumed. If type "pledge" is used, payments are escrowed until the type is set to "payment".
     </li>
 </ul>
 <p>The optional properties for every page are:</p>
 <ul>
     <li>
         <code>"url"</code>
-        - The URL identifying the product if it is not the referrer-URL or URL on which the
+        - The URL identifying the canonical URL if it is not the URL on which the
         button is placed. Not allowed / ignored for metatag-version of JSON.
     </li>
     <li>
         <code>"image"</code>
         - The URL or BASE64 encoded content of an image for this product.
-    </li>
-    <li>
-        <code>"callback-url"</code>
-        - The URL that needs to be called back upon initial acceptance of the transaction. This means
-        the customer has accepted the terms. The payment-service will HTTP-POST the transaction-JSON. This URL
-        must be on the same domain as the originating payment.
-    </li>
-    <li>
-        <code>"confirm-url"</code>
-        - The URL that needs to be called back upon final completion of the transaction. This means the
-        customer has completed the purchase. The payment-service will HTTP-POST the transaction-JSON. This URL
-        must be on the same domain as the originating payment. The URL must respond by echoing the POST, indicating
-        it also agrees to the transaction.
-    </li>
-    <li>
-        <code>"forward-url"</code>
-        - The URL that needs to displayed after initially accepting the transaction (e.g. clicking a button). This URL
-        must be on the same domain as the originating payment.
     </li>
     <li>
         <code>"participants"</code>
@@ -356,13 +324,16 @@ xml:lang="en" &gt;
         be used as fallback.
     </li>
     <li>
-        <code>"mimetype"</code>
-        - The <a href="http://www.iana.org/assignments/media-types/index.html">mime-type</a>
-        of the object the user can buy.
-    </li>
-    <li>
         <code>"comment"</code>
         - As it says: comment. Will be ignored though size limits can be imposed.
+    </li>
+    <li>
+        <code>"language"</code>
+        - To ISO code of a language.
+    </li>
+    <li>
+        <code>"keywords"</code>
+        - One or many keywors or tags
     </li>
 </ul>
 <p>
@@ -372,16 +343,9 @@ xml:lang="en" &gt;
 <h2>External ID's</h2>
 
 <p>
-    It is possible to use ID's that do not belong to the service (id-base) indicated. In that case
-    the ID's must be full URL's. The payment service may choose to ignore / reject those or to offer some kind
-    of fail-over / alternative mechanism to try to get the payments to those persons.
+    Recipients are identified by id's that, in principle, must be full URL's or email addresses or Mobbr usernames. The URL's must be
+    of profiles of sites that have Mobbr OAUTH support.
 </p>
-
-<p>
-    For practical purposes, email- ('mailto:') or Twitter URL's and such are probably most convenient
-    to use as external URL's since it offers a direct mechanismen to contact and verify a recipient.
-</p>
-
 <p>
     Also possible are bitcoin addresses. These offer good anonimity and are directly payable in bitcoin. Also restricted
     to bitcoins only.
@@ -391,13 +355,20 @@ xml:lang="en" &gt;
     Below an example of a JSON transaction description with external ID's.
 </p>
     <pre><code>{
-   "id-base": "https://api.mobbr.com/id/",
+   "id-base": "https://mobbr.com/#/person/",
    "title": "The iPhony4",
    "description": "Article about some fictious planned obscolescence device",
-   "participants": [
+   "participants": 
+   [
        {
            "id": "Paramatman",
            "comment": "Relative URL, relative to id-base",
+           "role": "author",
+           "share": "3"
+       },
+       {
+           "id": "https://mobbr.com/#/person/Paramatman",
+           "comment": "Absolute URL, in this case a Mobbr profile",
            "role": "author",
            "share": "3"
        },
@@ -414,8 +385,8 @@ xml:lang="en" &gt;
            "share": "1"
        },
        {
-           <b>"id": "https://twitter.com/#!/mobbrcom",
-           </b>"comment": "The twitter-URL of @mobbrcom",
+           <b>"id": "https://github.com/patricksavalle",
+           </b>"comment": "A supported profile",
            "role": "co-author",
            "share": "1"
        },
@@ -427,5 +398,4 @@ xml:lang="en" &gt;
        }
    ]
 }</code></pre>
-<p>How and if such external ID's are handled, is up to the payment-provider.</p>
 </div>

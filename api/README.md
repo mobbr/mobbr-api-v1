@@ -142,7 +142,7 @@ List all ID-providers. If one of the confirmed profile's / id's in the result is
 		
 ##List event types
 
-All eventtypes that can be returned by the NOTIFICATION API. There are 'user', 'uri', 'domain' notifications, depending on scope or origin of the event.
+All eventtypes that can be returned by the NOTIFICATION API. There are 'user', 'uri', 'domain' notifications, depending on scope or origin of the event. Most events have an associated email notification.
 		
 	GET	/api_v1/api/event_types
 
@@ -153,15 +153,137 @@ All eventtypes that can be returned by the NOTIFICATION API. There are 'user', '
 **Response
 
     {
-        "result":
-        [
+        "result": [
             {
-                "type":"user",
-                "event":"account_activation",
-                "description":"Account activated"
+                "type": "user",
+                "event": "account_activation",
+                "description": "Account activated"
+            },
+            {
+                "type": "user",
+                "event": "pre_registration",
+                "description": "Account registered"
+            },
+            {
+                "type": "user",
+                "event": "invoice_download",
+                "description": "Invoice ready for download"
+            },
+            {
+                "type": "user",
+                "event": "kyc_request_submitted",
+                "description": "Identity verification requested"
+            },
+            {
+                "type": "user",
+                "event": "kyc_acceptance",
+                "description": "Identity verified"
+            },
+            {
+                "type": "user",
+                "event": "kyc_failure",
+                "description": "Identity rejected"
+            },
+            {
+                "type": "user",
+                "event": "email_address_confirmation",
+                "description": "Email change requested"
+            },
+            {
+                "type": "user",
+                "event": "email_address_update",
+                "description": "New email address set"
+            },
+            {
+                "type": "user",
+                "event": "password_update",
+                "description": "New password set"
+            },
+            {
+                "type": "user",
+                "event": "payment_pledged",
+                "description": "Task received a pledge"
+            },
+            {
+                "type": "user",
+                "event": "payment_claimed",
+                "description": "Unclaimed share(s) claimed"
+            },
+            {
+                "type": "user",
+                "event": "payment_sent",
+                "description": "Payment sent"
+            },
+            {
+                "type": "user",
+                "event": "payment_received",
+                "description": "Payment received"
+            },
+            {
+                "type": "user",
+                "event": "payment_revocation",
+                "description": "Pledge revoked"
+            },
+            {
+                "type": "user",
+                "event": "script_mention",
+                "description": "Mentioned as participant"
+            },
+            {
+                "type": "user",
+                "event": "task_invitation",
+                "description": "Invited for a task"
+            },
+            {
+                "type": "user",
+                "event": "xpayment_created",
+                "description": "Pay-in pending"
+            },
+            {
+                "type": "user",
+                "event": "xpayment_failure",
+                "description": "Pay-in failed"
+            },
+            {
+                "type": "user",
+                "event": "xpayment_received",
+                "description": "Pay-in received"
+            },
+            {
+                "type": "user",
+                "event": "login_key_generation",
+                "description": "Login key requested"
+            },
+            {
+                "type": "user",
+                "event": "account_login",
+                "description": "Account logged in"
+            },
+            {
+                "type": "user",
+                "event": "profile_update",
+                "description": "Profile updated"
+            },
+            {
+                "type": "user",
+                "event": "login",
+                "description": "Logged in"
+            },
+            {
+                "type": "user",
+                "event": "logout",
+                "description": "Logged out"
+            },
+            {
+                "type": "user",
+                "event": "auto_logout",
+                "description": "Logged out by system for security reasons"
+            },
+            {
+                "type": "user",
+                "event": "profile_update",
+                "description": "Profile updated"
             }
         ],
-        "message":null
-    }
-	
-	GET	/api_v1/api/event_types	
+        "message": null
+    }	

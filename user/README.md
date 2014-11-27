@@ -5,9 +5,9 @@ Register users, add id's, login, handle oauth, maintain user profile.
 - [Create user] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#create-user)
 - [Update user] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#update-user)
 - [Password login] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login)
-- Logout
-- Send login link
-- Login with link
+- [Logout] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#logout)
+- [Send login link] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#send-login-link)
+- [Login with link] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#login-with-link)
 - Update primary email
 - Confirm primary email 
 - Add extra email ID

@@ -19,6 +19,8 @@ Make payments and pledges to usernames, email-addresses, OAUTH profiles, payment
 
 Generates a payment preview. It lists the actual payment properties and recipients. Use `hash` from the result to confirm the payment with `/api_v1/payments/confirm` within 10 minutes.
 
+The API analyses the payment and returns the actual payment that would be made if it were to be confirmed. Users that could not be paid for some reason are left out, the others are resolved to Mobbr usernames.
+
     POST /api_v1/payments/preview
 
 **Arguments**

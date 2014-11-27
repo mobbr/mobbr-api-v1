@@ -105,7 +105,7 @@ Retrieve the balance for every payment in every currency done to an URL
 **Arguments**
 
     url              
-    base_currency   
+    base_currency, all currency balances are also summed into one equivalent balance
     
 **Example**
 

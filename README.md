@@ -1,5 +1,4 @@
-MOBBR CROWDPAYMENT REST API V1
-==============================
+#MOBBR CROWDPAYMENT REST-API V1
 
 > The dynamically generated API quick reference is here: https://api.mobbr.com In case of conflict between this documentation and the quick reference, trust the quick reference.
 
@@ -15,9 +14,9 @@ With this API you can:
 - find the best tasks for users
 
 The API accepts the following payment destinations:
-- usernames, email addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
+- usernames, email addresses, twitternames, bitcoin addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
 - JSON payment scripts that lists the payment properties and all recipients and their shares
-- URL's, in which case the API does a callback to retrieve a JSON payment script from the <metadata name="participation" content="..." /> HTML tag
+- URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
 
 ##API'S
 
@@ -56,7 +55,7 @@ The API accepts the following payment destinations:
 
 `GET` and `DELETE` parameters require url encoding for arguments. Arrays are repetitions of same-name-arguments.
 
-    `GET` /api_v1/invoices?payment_ids=1&payment_ids=2&...
+    GET /api_v1/invoices?payment_ids=1&payment_ids=2&...
 
 If the `Content-Type` header is not recognized or permitted the server returns a `415 Unsupported Media Type` response.
 
@@ -90,7 +89,7 @@ Errors are signaled by HTTP-code. The client should also check the `message` fie
 
 Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication. This is secure since all requests use SSL/HTTPS.
 
-To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to `/api_v1/user/password_login` returns a temporary access token `result['token']`. Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
+To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to `PUT /api_v1/user/password_login` returns a temporary access token `result['token']`. Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
 
 ##PAGINATION
 

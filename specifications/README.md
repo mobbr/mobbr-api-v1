@@ -32,7 +32,7 @@
     ]
 }</code></pre>
 <p>
-    Usage of the script:
+    Usage and explanation of the script:
 </p>
 <ul>
     <li>
@@ -54,7 +54,10 @@
         <a href="#xhtml">Additional HTML elements</a>
     </li>
     <li>
-        <a href="#specs">Specification</a>
+        <a href="#specs">Elements</a>
+    </li>
+    <li>
+        <a href="#ids">ID's</a>
     </li>
 </ul>
 
@@ -235,8 +238,8 @@
 
 <p>
     It is allowed that different patterns match the same URL. Properties are then cascaded (if not present)
-    or overwritten (if already present) in top to bottom order, combining all matching rules.
-    This cascading may not lead to duplicate participants being inserted which is allowed as long
+    or overwritten (if already present), combining all matching rules into a single resulting script.
+    This cascading may lead to duplicate participants being inserted which is allowed as long
     as the roles differ.
 </p>
 
@@ -248,14 +251,7 @@
 
 <p>
     It is possible to supply a page script as well as a domain script. In this case the
-    processor will cascade (combine) the values in the following order:
-</p>
-<ol>
-    <li>domain script</li>
-    <li>page script</li>
-</ol>
-<p>
-    The scripts are combined and duplicate values are overwritten in the order given above. 
+    processor will cascade (combine) the scripts. Duplicate values are overwritten following the order of declaration. 
     Participants can never be overwritten through cascading scripts, to combine participants with the same ID they need
     to have different roles.
 </p>
@@ -303,62 +299,62 @@
 <p>Possible script tags:</p>
 <ul>
     <li>
-        <code>"url"</code>
+        <code><b>url</b></code>
         - The URL of the collaboration or product. Forbidden in page or domain scripts. 
     </li>
     <li>
-        <code>"type"</code>
+        <code><b>type</b></code>
         - The type of transaction, if none is given, "payment" will be assumed. If type "pledge" is used, the script is in crowdfunding mode and payments are escrowed until the type is set to "payment".
     </li>
     <li>
-        <code>"image"</code>
+        <code><b>image</b></code>
         - The URL or BASE64 encoded content of an image for this product.
     </li>
     <li>
-        <code>"participants"</code>
+        <code><b>participants</b></code>
         - A JSON-array of one or more participants. 
         <ul>
             <li>
-                <code>"id"</code>
+                <code><b>id</b></code>
                 - The ID (email, username, OAUTH profile) of the recipient. 
             </li>
             <li>
-                <code>"role"</code>
+                <code><b>role</b></code>
                 - Description of the role or part the recipient played in getting this product to you.
             </li>
             <li>
-                <code>"share"</code>
+                <code><b>share</b></code>
                 - Positive integer or percentage. Integer shares of the payment or payment relative to the other shares.
                 '1' will be used as default.
             </li>
             <li>
-                <code>"comment"</code>
+                <code><b>comment</b></code>
                 - Will be ignored though size limits can be imposed.
             </li>
         </ul>
     </li>
     <li>
-        <code>"title"</code>
+        <code><b>title</b></code>
         - Name of the product. The HTML-tag <code>&lt;title&gt;</code> of the page will be used if no name is given.
     </li>
     <li>
-        <code>"description"</code>
+        <code><b>description</b></code>
         - Description of the product. If not present, the HTML-metatag
         <code>&lt;meta name="description" content="..." /&gt; </code>
         of the page will be used. Else the OG:description tag could
         be used as fallback.
     </li>
     <li>
-        <code>"comment"</code>
+        <code><b>comment</b></code>
         - Will be ignored though size limits can be imposed.
     </li>
     <li>
-        <code>"language"</code>
+        <code><b>language</b></code>
         - To ISO code of a language. The HTML metadata will be analysed and used if none is given
     </li>
     <li>
-        <code>"keywords"</code>
-        - One or many keywors or tags. The HTML metadata keywords will be added to these.
+        <code><b>keywords</b></code>
+        - One or many keywords or tags. The HTML metadata keywords will be added to these.
     </li>
 </ul>
 <p>

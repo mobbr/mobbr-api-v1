@@ -35,7 +35,7 @@ Examples of recipients that can be put in the `data` argument:
 - `mailto:me@mail.com`
 - `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
 - `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
-- `{...}` (a JSON payment script, see example below)
+- `{...}` (a JSON payment script, see [specification](https://github.com/mobbr/mobbr-api-v1/tree/master/specifications) and [examples](https://github.com/mobbr/mobbr-api-v1/tree/master/examples))
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 

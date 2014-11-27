@@ -7,6 +7,36 @@
     In social collaboration every participant will have his own share of total added value. 
     The Mobbr script is used to distribute payments and donations among many participants in a collaboration by ratio of that share. 
 </p>
+<p>
+    Simple script example:
+</p>
+<pre><code>{
+        "title" : "The iPhony6",
+        "description" : "Article about some fictitious planned obsolescence device",
+        "language" : "EN",
+        "keywords":
+        [
+            "planned obsolescence", "iphony"
+        ]
+        "participants" : 
+        [
+            {
+                "id": "patman",
+                "role": "author",
+                "share": "3"
+            },
+            {
+                "id": "johnny",
+                "role": "author",
+                "share": "3"
+            },
+            {
+                "id": "zaplog",
+                "role": "platform",
+                "share": "1"
+            }
+        ]
+    }</code></pre>
 <ul>
     <li>
         <a href="#api">API-arguments</a>
@@ -273,6 +303,10 @@
 
 <p>Possible script tags:</p>
 <ul>
+    <li>
+        <code>"url"</code>
+        - The URL of the collaboration or product. Forbidden in page or domain scripts. 
+    </li>
     <li>
         <code>"type"</code>
         - The type of transaction, if none is given, "payment" will be assumed. If type "pledge" is used, the script is in crowdfunding mode and payments are escrowed until the type is set to "payment".

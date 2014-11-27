@@ -18,6 +18,11 @@ The API accepts the following payment destinations:
 - JSON payment scripts that lists the payment properties and all recipients and their shares
 - URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
 
+##Examples and specifications
+
+- [Examples] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
+- [Specifiations] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications)
+
 ##API'S
 
 - [General purpose] (https://github.com/mobbr/mobbr-api-v1/tree/master/api)
@@ -31,11 +36,6 @@ The API accepts the following payment destinations:
 - [Keywords] (https://github.com/mobbr/mobbr-api-v1/tree/master/keywords)
 - [Notifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/notifications)
 - [Persons] (https://github.com/mobbr/mobbr-api-v1/tree/master/persons)
-
-##Examples and specifications
-
-- [Examples] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
-- [Specifiations] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications)
 
 ##CONCEPTS
 

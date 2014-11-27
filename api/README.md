@@ -112,7 +112,7 @@ Response
             {
                 "host":"bitbucket.com",
                 "provider":"bitbucket.com",
-                "favicon":"https:\/\/bitbucket.org\/favicon.ico",
+                "favicon":"https://bitbucket.org/favicon.ico",
                 "icon":""
             }
         ],
@@ -137,13 +137,13 @@ Response
             {
                 "host":"gravatar.com",
                 "provider":"gravatar",
-                "favicon":"https:\/\/gravatar.com\/favicon.ico",
-                "icon":"https:\/\/gravatar.com\/favicon.ico"
+                "favicon":"https://gravatar.com/favicon.ico",
+                "icon":"https://gravatar.com/favicon.ico"
             },
             {
                 "host":"onename.io",
                 "provider":"onename",
-                "favicon":"https:\/\/onename.io\/favicon.ico",
+                "favicon":"https://onename.io/favicon.ico",
                 "icon":null
             }
         ],

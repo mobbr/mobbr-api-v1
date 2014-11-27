@@ -1,42 +1,39 @@
 <div>
 <h1>Payment script syntax</h1>
 
-<h2>Introduction</h2>
-
-<p>
-    In social collaboration every participant will have his own share of total added value. 
-    The Mobbr script is used to distribute payments and donations among many participants in a collaboration by ratio of that share. 
-</p>
 <p>
     Simple script example:
 </p>
 <pre><code>{
-        "title" : "The iPhony6",
-        "description" : "Article about some fictitious planned obsolescence device",
-        "language" : "EN",
-        "keywords":
-        [
-            "planned obsolescence", "iphony"
-        ]
-        "participants" : 
-        [
-            {
-                "id": "patman",
-                "role": "author",
-                "share": "3"
-            },
-            {
-                "id": "johnny",
-                "role": "author",
-                "share": "3"
-            },
-            {
-                "id": "zaplog",
-                "role": "platform",
-                "share": "1"
-            }
-        ]
-    }</code></pre>
+    "title" : "The iPhony6",
+    "description" : "Article about some fictitious planned obsolescence device",
+    "language" : "EN",
+    "keywords":
+    [
+        "planned obsolescence", "iphony"
+    ]
+    "participants" : 
+    [
+        {
+            "id": "patman",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "johnny",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "zaplog",
+            "role": "platform",
+            "share": "1"
+        }
+    ]
+}</code></pre>
+<p>
+    Usage of the script:
+</p>
 <ul>
     <li>
         <a href="#api">API-arguments</a>
@@ -86,7 +83,7 @@
 
 <p>
     To turn your web pages into payable objects you need to add metadata to your page. Put a <a href="http://www.json.org/">JSON</a>
-    description in the content-part of a <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt; </code>
+    description in the content-part of a <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt;</code>
     of your web page.
 </p>
 
@@ -168,8 +165,8 @@
 
 <p>
     The format is straightforward: the file defines sets of
-    properties that are applied to the URL's that match the
-    wildcard-pattern. The properties will be applied to every URL
+    scripts that are applied to the URL's that match the
+    wildcard-pattern. The scripts will be applied to every URL
     that matches the pattern in order of declaration. The wildcard character is
     '*', matching zero, one or many arbitrary characters. Any '*' that occurs
     naturally in the URL (which is very rare), must be escaped (preceded) with a '\'.
@@ -180,30 +177,32 @@
     website.
 </p>
     <pre><code>[
-   {
-       "url-pattern": "*",
-       "participation-info": 
-       {
-           "participants": 
-           [
+    {
+        "url-pattern": "*",
+        "script": 
+        {
+            "description":"Some default description",                                  
+            "language":"EN",
+            "participants": 
+            [
                {
                    "id": "John",
                    "role": "website-owner",
                    "share": "1"
                }
-           ]
-       }
-   },
-   {
-       "url-pattern": "/article/*",
-       "participation-info": 
+            ]
+        }
+    },
+    {
+        "url-pattern": "/article/*",
+        "script": 
         {
-           "participants": 
-           [
+            "participants": 
+            [
                {
                    "id": "John",
                    "role": "distributor",
-                   "share": "10"
+                   "share": "10%"
                },
                {
                    "id": "Hank",
@@ -215,23 +214,23 @@
                    "role": "reviewer",
                    "share": "10"
                }
-           ]
-       }
-   },
-   {
-       "url-pattern": "/article/*/picture",
-       "participation-info": 
-       {
-           "participants": 
-           [
-               {
+            ]
+        }
+    },
+    {
+        "url-pattern": "/article/*/picture",
+        "script": 
+        {
+            "participants": 
+            [
+                {
                    "id": "Susy",
                    "role": "photographer",
-                   "share": "1"
-               }
-           ]
-       }
-   }
+                   "share": "10%"
+                }
+            ]
+        }
+    }
 ]</code></pre>
 
 <p>

@@ -9,6 +9,12 @@
 </p>
 <ul>
     <li>
+        <a href="#api">API-arguments</a>
+    </li>
+    <li>
+        <a href="#api">Button-scripts</a>
+    </li>
+    <li>
         <a href="#page">Page-scripts</a>
     </li>
     <li>
@@ -26,7 +32,24 @@
 </ul>
 
 <p>
-    <a id="page"></a>
+    <a id="api"></a>
+</p>
+
+<h2>API-arguments</h2>
+
+<p>
+    The <code>POST /api_v1/payments/preview</code> API-method can do a direct payment based on a payment script as described here. See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment">https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment</a>. 
+</p>
+
+<p>
+    <a id="button"></a>
+</p>
+
+<h2>Button-scripts</h2>
+
+<p>
+    The Mobbr javascript-button accepts a payment script as described here as argument. See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons">https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons</a>. 
+    If no script is given then Mobbr will do a callback to the originating URL and look for a Page-script.
 </p>
 
 <h2>Page-scripts (inline)</h2>
@@ -37,9 +60,7 @@
     of your web page.
 </p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-&lt;html xmlns=http://www.w3.org/1999/xhtml xml:lang="en" &gt;
+<pre><code>&lt;html&gt;
 &lt;head&gt;
     <b>&lt;meta name="participation" content='{
         "title" : "The iPhony4",
@@ -87,10 +108,7 @@
     As an alternative a HTML-LINK can be used, linking to an external JSON-description. Like below:
 </p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
-&lt;html xmlns=http://www.w3.org/1999/xhtml xml:lang="en" &gt;
+<pre><code>&lt;html&gt;
 &lt;head&gt;
     <b>&lt;link rel="participation" type="application/json"
         href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
@@ -257,7 +275,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 <ul>
     <li>
         <code>"type"</code>
-        - The type of transaction, if none is given, "payment" will be assumed. If type "pledge" is used, payments are escrowed until the type is set to "payment".
+        - The type of transaction, if none is given, "payment" will be assumed. If type "pledge" is used, the script is in crowdfunding mode and payments are escrowed until the type is set to "payment".
     </li>
     <li>
         <code>"image"</code>
@@ -280,6 +298,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 - Positive integer or percentage. Integer shares of the payment or payment relative to the other shares.
                 '1' will be used as default.
             </li>
+            <li>
+                <code>"comment"</code>
+                - Will be ignored though size limits can be imposed.
+            </li>
         </ul>
     </li>
     <li>
@@ -295,7 +317,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     </li>
     <li>
         <code>"comment"</code>
-        - As it says: comment. Will be ignored though size limits can be imposed.
+        - Will be ignored though size limits can be imposed.
     </li>
     <li>
         <code>"language"</code>
@@ -310,19 +332,19 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     <a id="ids"></a>
 </p>
 
-<h2>External ID's</h2>
+<h2>ID's</h2>
 
 <p>
-    Recipients are identified by id's that, in principle, must be full URL's or email addresses or Mobbr usernames. The URL's must be
+    Recipients are identified by id's that, in principle, must be full URL's. Email addresses, twitternames or Mobbr usernames are allowed for compactness. The URL's must be
     of user profiles of sites that have Mobbr OAUTH support.
 </p>
 <p>
-    Also possible are bitcoin addresses. These offer good anonimity and are directly payable in bitcoin. Also restricted
-    to bitcoins only.
+    Also possible are bitcoin addresses. These offer relative anonymity and are directly payable in bitcoin. Also restricted
+    to bitcoin payments only.
 </p>
 
 <p>
-    Below an example of a JSON transaction description with external ID's.
+    Below an example of a JSON transaction description with various external ID's.
 </p>
     <pre><code>{
    "title": "The iPhony4",
@@ -343,7 +365,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
        },
        {
            <b>"id": "mailto:patman@zaplog.nl",
-           </b>"comment": "Straight email-address URL",
+           </b>"comment": "email-address URL, preferred format for email",
            "role": "co-author",
            "share": "3"
        },
@@ -354,7 +376,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
            "share": "3"
        },
        {
-           <b>"id": "http://gravatar.com/patricksavalle",
+           <b>"id": "https://gravatar.com/patricksavalle",
            </b>"comment": "A supported profile",
            "role": "co-author",
            "share": "1"
@@ -368,6 +390,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
        {
            <b>"id": "bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L",
            </b>"comment": "The bitcoin address to receive payments",
+           "role": "co-author",
+           "share": "1"
+       },
+       {
+           <b>"id": "@patricksavalle",
+           </b>"comment": "Short cut for https://twitter.com/patricksavalle",
            "role": "co-author",
            "share": "1"
        },

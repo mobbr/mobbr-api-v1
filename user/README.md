@@ -7,20 +7,20 @@ Register users, add id's, login, handle oauth, maintain user profile.
 - [Password login] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login)
 - Logout
 - Send login link
+- Login with link
 - Update primary email
 - Confirm primary email 
 - Add extra email ID
-- Login with link
 - Get OAUTH ID
 - Confirm OAUTH ID
-- Delete ID
 
 ##The complete user profile
 
 Most USER API methods return the (updated) user data. Some of the returned fields are read-only. For example:
 
     {
-        "result": {
+        "result": 
+        {
             "username": "Patrick",
             "email": "patrick@mobbr.com",
             "status": "activated",
@@ -52,7 +52,8 @@ Most USER API methods return the (updated) user data. Some of the returned field
             "bio": null,
             "invoice_numbering_prefix": "MOBBR-",
             "invoice_numbering_postfix": "-2014",
-            "id": [
+            "id": 
+            [
                 "http://profiles.google.com/116413503186570946277",
                 "http://www.youtube.com/user/patricksavalle",
                 "https://bitcoin.stackexchange.com/users/3361/patrick-savalle",
@@ -68,7 +69,8 @@ Most USER API methods return the (updated) user data. Some of the returned field
                 "mailto:patrick@patricksavalle.com"
             ],
             "thumbnail": "https://secure.gravatar.com/avatar/e6032c3bbb3ece98d2782862594b08c2?size=30&d=https://mobbr.com/img/default-gravatar2.png",
-            "setting": {
+            "setting": 
+            {
                 "hide_my_outgoing_payments": "0",
                 "hide_my_incoming_payments": "0",
                 "hide_my_items": "0",
@@ -228,3 +230,48 @@ The token expires after a certain time of inactivity.
             "type": "info"
         }
     }
+
+##Logout
+
+Explicitely destroying the temporary access token.
+
+    DELETE /api_v1/user/logout	
+
+**Example**
+
+Request
+
+    curl 
+    -X DELETE 
+    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
+    https://test-api.mobbr.com/api_v1/user/logout
+
+##Send login link
+
+Users can login via email, This can be used as a permenant two-factor mechanism or just in case the lost their password or username. 
+
+The API will send mail to the primary email address. In the mail is a single user login link.
+
+    GET	/api_v1/user/send_login_link
+   
+Arguments
+    
+- *username_or_email_or_id*, a username, an email or any of the ID's in the users profile.
+ 
+**Example**, by email
+
+Request
+
+    curl 
+    -X GET 
+    https://test-api.mobbr.com/api_v1/user/send_login_link?username_or_email_or_id=patrick@mobbr.com
+
+##Login with link
+
+Once a single use login link is obtained from a login link, a temporary authorization token can be obtained using this method. The method is equivalent to the [password login](https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login).
+
+    PUT	/api_v1/user/link_login	login_token
+    
+Arguments
+
+- *login_token*

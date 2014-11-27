@@ -11,18 +11,28 @@ Helper methods. All public.
 - [List ID providers *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/api#list-id-providers)
 - [List event types *public*] (https://github.com/mobbr/mobbr-api-v1/tree/master/api#list-event-types)
 
-
 ##List translations
 
 Return the API languages, currently only 'EN' available.
 
     GET	/api_v1/api/translations	
     
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/translations
 
-**Response**
+Response
+
+    {
+        "result":
+        [
+            {
+                "code":"EN",
+                "name":"English"
+            }
+        ],
+        "message":null
+    }
 
 ##List currencies
 
@@ -30,11 +40,11 @@ Return all currencies. Indicates which currencies also have wallet support. The 
 
     GET	/api_v1/api/currencies	
     
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/currencies
 
-**Response**
+Response
 
     {
         "result": [
@@ -55,7 +65,7 @@ Return all currencies. Indicates which currencies also have wallet support. The 
 
 Return the ISO codes of languages and countries and all supported timezones, can be used to allow the user to customize his/her profile.
 
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/languages
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/countries
@@ -67,11 +77,11 @@ For the KYC support (legally accepted identification of a user) it is needed the
 
 	GET	/api_v1/api/kyc_incomeranges
 		
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/kyc_incomeranges
 
-**Response**
+Response
 
     {
         "result":
@@ -90,11 +100,11 @@ For the KYC support (legally accepted identification of a user) it is needed the
 	
 	GET	/api_v1/api/oauth_providers	
 	
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/oauth_providers
     
-**Response
+Response
 
     {
         "result":
@@ -115,11 +125,11 @@ List all ID-providers. If one of the confirmed profile's / id's in the result is
 			
 	GET	/api_v1/api/id_providers
 
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/id_providers
     
-**Response
+Response
 
     {
         "result":
@@ -146,11 +156,11 @@ All eventtypes that can be returned by the NOTIFICATION API. There are 'user', '
 		
 	GET	/api_v1/api/event_types
 
-**Request**
+Request
 
     curl -X GET -H "Accept: application/json" https://api.mobbr.com/api_v1/api/event_types
     
-**Response
+Response
 
     {
         "result": [

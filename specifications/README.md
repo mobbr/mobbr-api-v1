@@ -15,17 +15,17 @@
     "participants" : 
     [
         {
-            "id": "patman",
+            "id": "mailto:patman@mobbr.com",
             "role": "author",
             "share": "3"
         },
         {
-            "id": "johnny",
+            "id": "mailto:johnny@mobbr.com",
             "role": "author",
             "share": "3"
         },
         {
-            "id": "zaplog",
+            "id": "mailto:info@zaplog.nl",
             "role": "platform",
             "share": "1"
         }
@@ -113,17 +113,17 @@
         "participants" : 
         [
             {
-                "id": "patman",
+                "id": "mailto:patman@mobbr.com",
                 "role": "author",
                 "share": "3"
             },
             {
-                "id": "johnny",
+                "id": "mailto:johnny@mobbr.com",
                 "role": "author",
                 "share": "3"
             },
             {
-                "id": "zaplog",
+                "id": "mailto:info@zaplog.nl",
                 "role": "platform",
                 "share": "1"
             }
@@ -204,7 +204,7 @@
             "participants": 
             [
                {
-                   "id": "John",
+                   "id": "https://mobbr.com/#/person/john",
                    "role": "website-owner",
                    "share": "1"
                }
@@ -217,21 +217,21 @@
         {
             "participants": 
             [
-               {
-                   "id": "John",
-                   "role": "distributor",
-                   "share": "10%"
-               },
-               {
-                   "id": "Hank",
-                   "role": "author",
-                   "share": "4"
-               },
-               {
-                   "id": "Philip",
-                   "role": "reviewer",
-                   "share": "10"
-               }
+                {
+                    "id": "mailto:patman@mobbr.com",
+                    "role": "author",
+                    "share": "3"
+                },
+                {
+                    "id": "mailto:johnny@mobbr.com",
+                    "role": "author",
+                    "share": "3"
+                },
+                {
+                    "id": "mailto:info@zaplog.nl",
+                    "role": "platform",
+                    "share": "1"
+                }
             ]
         }
     },
@@ -242,7 +242,7 @@
             "participants": 
             [
                 {
-                   "id": "Susy",
+                   "id": "https://mobbr.com/#/person/susy",
                    "role": "photographer",
                    "share": "10%"
                 }
@@ -387,8 +387,30 @@
 </p>
 
 <p>
-    Below an example of a JSON transaction description with various external ID's.
+    Below some examples of a JSON transaction description with various external ID's. First ID's that are <b>not</b> allowed (because an ID must be an URL)
 </p>
+    <pre><code>{
+   "title": "The iPhony4",
+   "description": "Article about some fictious planned obscolescence device",
+   "participants": 
+   [
+       {
+           "id": "Paramatman",
+           "comment": "Invalid ID, not an URL, use: https://mobbr.com/#/person/Paramatman",
+       },
+       {
+           <b>"id": "patman@zaplog.nl",
+           </b>"comment": "Invalid ID, not an URL, use: mailto:patman@zaplog.nl",
+       },
+       {
+           <b>"id": "@patman",
+           </b>"comment": "Invalid ID, not an URL, use: https://twitter.com/patman",
+       },
+   ]
+}</code></pre>
+
+<p>Examples of valid ID's:</p>
+
     <pre><code>{
    "title": "The iPhony4",
    "description": "Article about some fictious planned obscolescence device",
@@ -397,56 +419,26 @@
        {
            "id": "https://mobbr.com/#/person/Paramatman",
            "comment": "Absolute URL, in this case a Mobbr profile",
-           "role": "author",
-           "share": "3"
-       },
-       {
-           "id": "Paramatman",
-           "comment": "Relative URL, Mobbr profile is assumed",
-           "role": "author",
-           "share": "3"
        },
        {
            <b>"id": "mailto:patman@zaplog.nl",
-           </b>"comment": "email-address URL, preferred format for email",
-           "role": "co-author",
-           "share": "3"
-       },
-       {
-           <b>"id": "patman@zaplog.nl",
-           </b>"comment": "Short cut email-address",
-           "role": "review-author",
-           "share": "3"
+           </b>"comment": "email-address, will receive an email with a registration link",
        },
        {
            <b>"id": "https://gravatar.com/patricksavalle",
-           </b>"comment": "A supported profile",
-           "role": "co-author",
-           "share": "1"
+           </b>"comment": "A supported profile, must be verified by matching email inside",
        },
        {
            <b>"id": "https://github.com/patricksavalle",
-           </b>"comment": "A supported profile",
-           "role": "co-author",
-           "share": "1"
+           </b>"comment": "A supported profile, must be verified using OAUTH",
        },
        {
            <b>"id": "bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L",
-           </b>"comment": "The bitcoin address to receive payments",
-           "role": "co-author",
-           "share": "1"
-       },
-       {
-           <b>"id": "@patricksavalle",
-           </b>"comment": "Short cut for https://twitter.com/patricksavalle",
-           "role": "co-author",
-           "share": "1"
+           </b>"comment": "A bitcoin address, will receive them payment directly",
        },
        {
            <b>"id": "tel:+31638677592",
-           </b>"comment": "Telephone number of recipient",
-           "role": "co-author",
-           "share": "1"
+           </b>"comment": "Telephone number of recipient, will receive an SMS with a registration link",
        }
    ]
 }</code></pre>

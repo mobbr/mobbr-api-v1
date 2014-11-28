@@ -39,10 +39,13 @@
         <a href="#api">API-arguments</a>
     </li>
     <li>
-        <a href="#api">Button-scripts</a>
+        <a href="#button=-scripts">Button-scripts</a>
     </li>
     <li>
-        <a href="#page">Page-scripts</a>
+        <a href="#page-inline">Inline page-scripts</a>
+    </li>
+    <li>
+        <a href="#page-external">External page-scripts</a>
     </li>
     <li>
         <a href="#domain">Domain-scripts</a>
@@ -85,6 +88,10 @@
 </p>
 <p>
     See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons">https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons</a>. 
+</p>
+
+<p>
+    <a id="page-inline"></a>
 </p>
 
 <h2>Page-scripts (inline)</h2>
@@ -134,6 +141,10 @@
     <i>
         <small>Note: this construction is W3C valid.</small>
     </i>
+</p>
+
+<p>
+    <a id="page-external"></a>
 </p>
 
 <h2>Page-scripts (external)</h2>

@@ -1,4 +1,4 @@
-#Payin and payout (xpayments) API
+#XPAYMENTS API
 
 Funding of a wallet. Withdraws to external accounts and wallet. Deposits from external accounts and creditcards. Mobbr supports all major FIAT currencies plus Bitcoin.
 
@@ -131,7 +131,6 @@ Request
 
     curl 
     -X POST 
-    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -d '{"amount":250,"currency":"EUR","address":{"type":"IBAN","iban":"NL28INGB0004750773","name":"SAVALLE","address":"APENBERG, ZOETERWOUDE"}}' 
@@ -217,7 +216,6 @@ Request arguments
         "type":"creditcard",
         "currency":"EUR",
         "amount":12, 
-        "return_url":"https://mydomain.com/my_return_page"
     }
 
 Request
@@ -226,7 +224,6 @@ Request
     -X POST 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
-    -H "Authorization: Basic VXNlcjpwYXNzd29yZDEyMw==" 
     -d '{"type":"creditcard","currency":"EUR","amount":12, "return_url":"https://mydomain.com/my_return_page"}' 
     https://api.mobbr.com/api_v1/xpayments/deposit_fee
 

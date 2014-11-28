@@ -150,15 +150,13 @@
 <h2>Page-scripts (external)</h2>
 
 <p>
-    As an alternative to an inline script, an HTML-LINK can be used, linking to an external JSON-description.
+    As an alternative to an inline script, an HTML-LINK can be used, linking to an external script.
 </p>
 
 <pre><code>&lt;html&gt;
 &lt;head&gt;
     <b>&lt;link rel="participation" type="application/json"
         href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
-
-<p>In which case the external link should be to a script</p>
 
 <p><code>HTTPS://MOBBR.COM/MOBBR-PAYMENT_INFO.JSON</code></p>
 
@@ -226,6 +224,8 @@
     The following example describes the properties for a complete
     website.
 </p>
+<p><code>HTTPS://YOURDOMAIN.COM/PARTICIPATION.TXT</code></p>
+
     <pre><code>[
     {
         "url-pattern": "*",

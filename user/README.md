@@ -2,17 +2,20 @@
 
 Register users, add id's, login, handle oauth, maintain user profile.
 
+- [The complete user profile] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#the-complete-user-profile)
+- [The mutable fields] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#the-mutable-fields-of-the-user-profile)
 - [Create user] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#create-user)
 - [Update user] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#update-user)
 - [Password login] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login)
 - [Logout] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#logout)
 - [Send login link] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#send-login-link)
 - [Login with link] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#login-with-link)
-- Update primary email
-- Confirm primary email 
-- Add extra email ID
-- Get OAUTH ID
-- Confirm OAUTH ID
+- [Update primary email] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#update-primary-email)
+- [Confirm primary email] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#confirm-primary-email)
+- [Add extra email ID] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#add-extra-email-id)
+- [Confirm extra email ID] (https://github.com/mobbr/mobbr-api-v1/tree/master/user#confirm-extra-email-id)
+- Get OAUTH redirect
+- Confirm OAUTH profile
 
 ##The complete user profile
 
@@ -68,7 +71,7 @@ Most USER API methods return the (updated) user data. Some of the returned field
                 "mailto:patrick@mobbr.com",
                 "mailto:patrick@patricksavalle.com"
             ],
-            "thumbnail": "https://secure.gravatar.com/avatar/e6032c3bbb3ece98d2782862594b08c2?size=30&d=https://mobbr.com/img/default-gravatar2.png",
+            "thumbnail": "https://secure.gravatar.com/avatar/e6032c3bbb3ece98d2782862594b08c2",
             "setting": 
             {
                 "hide_my_outgoing_payments": "0",
@@ -89,34 +92,7 @@ Most USER API methods return the (updated) user data. Some of the returned field
         "message": null
     }
     
-##Create user
-
-Create a new user. The API will send an email to have the user confirm the new account.
-
-    PUT	/api_v1/user/register_user_send_login_link	    
-
-**Arguments**
-
-- *username*
-- *email* 
-- *password*
-    
-**Example**
-
-Request
-
-
-##Update user
-
-Create a new user. The API will send an email to have the user confirm the new account. Not all user profiles fields can be changed through this method, other USER API methods will set those.
-
-    POST /api_v1/user/update_user
-
-**Arguments**
-
-- *user*, array of fields, only fields that are changed need to be sent.
-
-Mutable fields of a user-profile:
+##The mutable fields of the user profile
 
     {
         "currency_iso": "EUR",
@@ -154,6 +130,60 @@ Mutable fields of a user-profile:
         }
     }
     
+##Create user
+
+Create a new user. The API will send an email to have the user confirm the new account.
+
+    PUT	/api_v1/user/register_user_send_login_link	    
+
+**Arguments**
+
+- *username*
+- *email* 
+- *password*
+    
+**Example**
+
+Request parameters
+
+    {
+        "username":"pietjepuk",
+        "email":"pietjepuk@pukkeville.com",
+        "password":"m0bbr2011"
+    }
+
+Request
+
+    curl 
+    -X PUT 
+    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"username":"pietjepuk","email":"pietjepuk@pukkeville.com","password":"abcd1234"}' 
+    https://test-api.mobbr.com/api_v1/user/register_user_send_login_link
+
+Response
+
+    {
+        "result":null,
+        "message":
+        {
+            "text":"Activation link send to: pietjepuk@pukkeville.com",
+            "type":"info"
+        }
+    }
+
+
+##Update user
+
+Create a new user. The API will send an email to have the user confirm the new account. Not all user profiles fields can be changed through this method, other USER API methods will set those.
+
+    POST /api_v1/user/update_user
+
+**Arguments**
+
+- *user*, array of fields, only fields that are changed need to be sent.
+
 **Example**
 
 Request arguments
@@ -178,7 +208,7 @@ Request
 
 Response
 
-The complete user profile, see at top
+*The complete user profile, see at top*
 
 ##Password login
 
@@ -235,7 +265,7 @@ The token expires after a certain time of inactivity.
 
 ##Logout
 
-Explicitely destroying the temporary access token.
+Explicitely destroy the temporary access token. Clients should not use the token again thereafter.
 
     DELETE /api_v1/user/logout	
 
@@ -250,9 +280,9 @@ Request
 
 ##Send login link
 
-Users can login via email, This can be used as a permenant two-factor mechanism or just in case the lost their password or username. 
+Users can login via email, This can be used as a permanent two-factor login mechanism or just in case of a lost password or username. 
 
-The API will send mail to the primary email address. In the mail is a single user login link.
+The API will send mail to the primary email address. In the mail is a one-time use login link.
 
     GET	/api_v1/user/send_login_link
    
@@ -272,8 +302,106 @@ Request
 
 Once a single use login link is obtained from a login link, a temporary authorization token can be obtained using this method. The method is equivalent to the [password login](https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login).
 
-    PUT	/api_v1/user/link_login	login_token
+    PUT	/api_v1/user/link_login
     
 Arguments
 
 - *login_token*
+
+**Example**
+
+Request
+
+    curl 
+    -X PUT 
+    -H "Content-Type: application/json" 
+    -d '{"login_token":"e6032c3bbb3ece98d2782862594b08c2"}' 
+    https://test-api.mobbr.com/api_v1/user/link_login
+
+##Update primary email
+
+Update the primary email of the user, this will not affect the ID's of the user, not even when the old/previous email was added as an ID.
+
+    POST /api_v1/user/update_email
+
+Arguments
+
+- *new_email*
+
+Request
+
+    curl 
+    -X POST 
+    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"new_email":"mobbr@mobbr.com"}' 
+    https://test-api.mobbr.com/api_v1/user/update_email
+
+Response
+
+    {
+        "result":null,
+        "message":
+        {
+            "text":"An activation link has been sent to mobbr@mobbr.com",
+            "type":"info"
+        }
+    }
+    
+##Confirm primary email
+
+Confirm the update of the primary email with the token that was send to user by email. 
+
+    PUT	/api_v1/user/link_login
+
+Arguments
+
+- *update_token*
+
+Request
+
+    curl 
+    -X POST 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"update_token":"e6032c3bbb3ece98d2782862594b08c2"}' 
+    https://test-api.mobbr.com/api_v1/user/confirm_email
+    
+##Add extra email ID
+
+Add an email address to the list of ID's (a user can have many payment addresses called ID's). The API sends a link to the user which contains the confirmation token. 
+ 
+    POST /api_v1/user/email_id	
+    
+- *new_email*
+
+Request
+
+    curl 
+    -X POST 
+    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"new_email":"mobbr@mobbr.com"}' 
+    https://test-api.mobbr.com/api_v1/user/email_id
+
+##Confirm extra email ID
+
+The client must use the token in the confirmation link to confirm the newly added email ID.
+
+    PUT	/api_v1/user/confirm_email_id
+
+Arguments
+
+- *confirm_token*
+
+Request
+
+    curl 
+    -X POST 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"confirm_token":"e6032c3bbb3ece98d2782862594b08c2"}' 
+    https://test-api.mobbr.com/api_v1/user/confirm_email_id
+    

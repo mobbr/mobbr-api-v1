@@ -116,6 +116,8 @@ Create a new user. The API will send an email to have the user confirm the new a
 
 - *user*, array of fields, only fields that are changed need to be sent.
 
+Mutable fields of a user-profile:
+
     {
         "currency_iso": "EUR",
         "language_iso": "EN",

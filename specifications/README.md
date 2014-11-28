@@ -158,6 +158,38 @@
     <b>&lt;link rel="participation" type="application/json"
         href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
 
+<p>In which case the external link should be to a script</p>
+
+<p><code>HTTPS://MOBBR.COM/MOBBR-PAYMENT_INFO.JSON</code></p>
+
+<pre><code>{
+    "title" : "The iPhony6",
+    "description" : "Article about some fictitious planned obsolescence device",
+    "language" : "EN",
+    "keywords":
+    [
+        "planned obsolescence", "iphony"
+    ]
+    "participants" : 
+    [
+        {
+            "id": "mailto:patman@mobbr.com",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "mailto:johnny@mobbr.com",
+            "role": "author",
+            "share": "3"
+        },
+        {
+            "id": "mailto:info@zaplog.nl",
+            "role": "platform",
+            "share": "1"
+        }
+    ]
+}</code></pre>
+
 <p>
     <a id="domain"></a>
 </p>

@@ -68,7 +68,10 @@
 <h2>API-arguments</h2>
 
 <p>
-    The <code>POST /api_v1/payments/preview</code> API-method can do a direct payment based on a payment script as described here. See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment">https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment</a>. 
+    The <code>POST /api_v1/payments/preview</code> API-method accepts a payment script for creating complex payments. 
+</p>
+<p>
+    See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment">https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment</a>. 
 </p>
 
 <p>
@@ -78,15 +81,16 @@
 <h2>Button-scripts</h2>
 
 <p>
-    The Mobbr javascript-button accepts a payment script as described here as argument. See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons">https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons</a>. 
-    If no script is given then Mobbr will do a callback to the originating URL and look for a Page-script.
+    The Mobbr javascript-button for web pages accepts a payment script as argument. 
+</p>
+<p>
+    See <a href="https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons">https://github.com/mobbr/mobbr-api-v1/tree/master/examples#buttons</a>. 
 </p>
 
 <h2>Page-scripts (inline)</h2>
 
 <p>
-    To turn your web pages into payable objects you need to add metadata to your page. Put a <a href="http://www.json.org/">JSON</a>
-    description in the content-part of a <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt;</code>
+    To turn your web pages into payable objects you need to place a payment script in the content-part of a <code>&lt;meta&gt;</code> tags in the <code>&lt;head&gt;</code>
     of your web page.
 </p>
 
@@ -135,7 +139,7 @@
 <h2>Page-scripts (external)</h2>
 
 <p>
-    As an alternative a HTML-LINK can be used, linking to an external JSON-description. Like below:
+    As an alternative to an inline script, an HTML-LINK can be used, linking to an external JSON-description.
 </p>
 
 <pre><code>&lt;html&gt;
@@ -150,7 +154,7 @@
 <h2>Domain description (domain script)</h2>
 
 <p>
-    As an alternative to tagging individual pages with metadata, a domain
+    Instead of tagging individual pages with metadata, a domain
     or website can specify global settings in a /PARTICIPATION.TXT file. This
     file needs to be placed in the root of the domain, like for
     instance the <a href="http://www.robotstxt.org/">ROBOTS.TXT</a>
@@ -237,10 +241,10 @@
 ]</code></pre>
 
 <p>
-    It is allowed that different patterns match the same URL. Properties are then cascaded (if not present)
-    or overwritten (if already present), combining all matching rules into a single resulting script.
+    It is allowed to have different patterns match the same URL. Properties are than cascaded 
+    or overwritten, combining all matching rules into a single resulting script.
     This cascading may lead to duplicate participants being inserted which is allowed as long
-    as the roles differ.
+    as their 'roles' differ.
 </p>
 
 <p>
@@ -251,13 +255,12 @@
 
 <p>
     It is possible to supply a page script as well as a domain script. In this case the
-    processor will cascade (combine) the scripts. Duplicate values are overwritten following the order of declaration. 
-    Participants can never be overwritten through cascading scripts, to combine participants with the same ID they need
-    to have different roles.
+    processor will cascade (combine) the scripts. Duplicate fields are overwritten by order of declaration. 
 </p>
 
 <p>
-    Using this logic it is possible to specify global participants in the /PARTICIPATION.TXT that can never be excluded
+        Participants can never be overwritten through cascading scripts, to combine participants with the same ID they need
+        to have different roles. This makes it possible to specify global participants in the /PARTICIPATION.TXT that can never be excluded
     by button or page scripts. For instance the website owner and such. If such a recipient such has a percentage share,
     his share can never be reduced nor excluded.
 </p>

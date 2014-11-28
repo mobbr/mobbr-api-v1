@@ -177,7 +177,7 @@ The data argument can also contain JSON scripts that describe a complex payment,
                 "share": 24
             },
             {
-                "id": "Patrick",
+                "id": "https://mobbr.com/#/patrick",
                 "role": "Contributor",
                 "share": 11
             }
@@ -187,6 +187,8 @@ The data argument can also contain JSON scripts that describe a complex payment,
         ],
         "message": "Text",
     }
+
+For the full specification, see: https://github.com/mobbr/mobbr-api-v1/tree/master/specifications
 
 ##Confirm payment
 

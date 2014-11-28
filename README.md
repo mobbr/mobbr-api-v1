@@ -21,7 +21,7 @@ The API accepts the following payment destinations:
 ##Examples and specifications
 
 - [Examples] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
-- [Specifiations] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications)
+- [Specifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications)
 
 ##API'S
 

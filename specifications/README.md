@@ -314,7 +314,7 @@
 
 <h2>Helpful (X)HTML elements</h2>
 
-<p>Additional metadata / properties that can help the payments system to make intelligent decisions:</p>
+<p>Additional metadata / properties that can help our API make intelligent decisions:</p>
 <ul>
     <li>The HTML &lt;title&gt; element.</li>
     <li>A metadata name="description" <a href="http://www.w3schools.com/tags/tag_meta.asp">element</a>.</li>
@@ -410,16 +410,15 @@
 <h2>ID's</h2>
 
 <p>
-    Recipients are identified by id's that, in principle, must be full URL's. Email addresses, twitternames or Mobbr usernames are allowed for compactness. The URL's must be
-    of user profiles of sites that have Mobbr OAUTH support.
-</p>
-<p>
-    Also possible are bitcoin addresses. These offer relative anonymity and are directly payable in bitcoin. Also restricted
+    Recipients are identified by id's that, in principle, must be full URL's. Email addresses, twitternames or Mobbr usernames must be reformatted as URL's. 
+    Also possible are bitcoin addresses, formatted as an URL. These offer relative anonymity and are directly payable in bitcoin. Restricted
     to bitcoin payments only.
 </p>
-
 <p>
-    Below some examples of a JSON transaction description with various external ID's. First ID's that are <b>not</b> allowed (because an ID must be an URL)
+    In general ID's are user profiles on supported (OAUTH) sites. 
+</p>
+<p>
+    Below some examples of a JSON transaction description with various external ID's. First ID's that are <b>not allowed</b> (because an ID must be an URL)
 </p>
     <pre><code>{
    "title": "The iPhony4",
@@ -427,8 +426,8 @@
    "participants": 
    [
        {
-           "id": "Paramatman",
-           "comment": "Invalid ID, not an URL, use: https://mobbr.com/#/person/Paramatman",
+           <b>"id": "Paramatman",
+           </b>"comment": "Invalid ID, not an URL, use: https://mobbr.com/#/person/Paramatman",
        },
        {
            <b>"id": "patman@zaplog.nl",

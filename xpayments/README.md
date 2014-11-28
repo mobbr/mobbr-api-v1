@@ -284,7 +284,7 @@ Response
 
 List all deposit addresses of a wallet
 
-     /api_v1/xpayments/list_addresses
+    GET /api_v1/xpayments/list_addresses
 
 **Example**
 

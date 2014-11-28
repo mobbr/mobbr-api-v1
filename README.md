@@ -14,7 +14,7 @@ With this API you can:
 - find the best tasks for users
 
 The API accepts the following payment destinations:
-- usernames, email addresses, twitternames, bitcoin addresses and supported OAUTH user profiles (such as Github, Stackoverflow)
+- usernames, email addresses, twitter users, bitcoin addresses, telephone numbers and supported OAUTH user profiles (such as Github, Stackoverflow)
 - JSON payment scripts that lists the payment properties and all recipients and their shares
 - URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
 
@@ -89,7 +89,11 @@ Errors are signaled by HTTP-code. The client should also check the `message` fie
 
 Clients and other servers can use HTTP BASIC AUTHENTICATION with each request that needs authentication. This is secure since all requests use SSL/HTTPS.
 
-To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to `PUT /api_v1/user/password_login` returns a temporary access token `result['token']`. Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
+To keep browser apps from storing username/password combinations in possible unsafe places (cookies or local storage) we also provide a second mechanism for authentication: a call to [`PUT /api_v1/user/password_login`](https://github.com/mobbr/mobbr-api-v1/tree/master/user#password-login) returns a temporary access token `result['token']`. Use this token as the password for the HTTP BASIC AUTHENTICATION and leave the username empty.
+
+##API KEYS
+
+...
 
 ##PAGINATION
 
@@ -101,7 +105,7 @@ Lists are limited to 100 items default. To retrieve more items, use the paginati
 
 ##SPECIAL API URL'S
 
-- The event hook you can attach to your Github repos
+- The event hook you can attach to your Github repo, this automates triggering pledges.
 
         /callback/github
 

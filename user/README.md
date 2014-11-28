@@ -289,6 +289,7 @@ The API will send mail to the primary email address. In the mail is a one-time u
 Arguments
     
 - *username_or_email_or_id*, a username, an email or any of the ID's in the users profile.
+- *redirect_url (=NULL)*, the URL to which the user must be directed after following the link in the email, will redirect to Mobbr client on NULL.
  
 **Example**, by email
 
@@ -327,6 +328,7 @@ Update the primary email of the user, this will not affect the ID's of the user,
 Arguments
 
 - *new_email*
+- *redirect_url (=NULL)*, the URL to which the user must be directed after following the link in the email, will redirect to Mobbr client on NULL.
 
 Request
 
@@ -375,6 +377,7 @@ Add an email address to the list of ID's (a user can have many payment addresses
     POST /api_v1/user/email_id	
     
 - *new_email*
+- *redirect_url (=NULL)*, the URL to which the user must be directed after following the link in the email, will redirect to Mobbr client on NULL.
 
 Request
 

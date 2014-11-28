@@ -448,8 +448,8 @@
    "participants": 
    [
        {
-           "id": "https://mobbr.com/#/person/Paramatman",
-           "comment": "Absolute URL, in this case a Mobbr profile",
+           <b>"id": "https://mobbr.com/#/person/Paramatman",
+           </b>"comment": "Absolute URL, in this case a Mobbr profile",
        },
        {
            <b>"id": "mailto:patman@zaplog.nl",
@@ -458,6 +458,10 @@
        {
            <b>"id": "https://gravatar.com/patricksavalle",
            </b>"comment": "A supported profile, must be verified by matching email inside",
+       },
+       {
+           <b>"id": "https://twitter.com/@patman",
+           </b>"comment": "Our API will tweet this person instructions for registration",
        },
        {
            <b>"id": "https://github.com/patricksavalle",

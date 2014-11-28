@@ -17,9 +17,7 @@ Make payments and pledges to usernames, email-addresses, OAUTH profiles, payment
 
 ##Create payment
 
-Generates a payment preview. It lists the actual payment properties and recipients. Use `hash` from the result to confirm the payment with `/api_v1/payments/confirm` within 10 minutes.
-
-The API analyses the payment and returns the actual payment that would be made if it were to be confirmed. Users that could not be paid for some reason are left out, the others are resolved to Mobbr usernames.
+Generates a payment preview which lists the actual payment properties and recipients that would be made if it were to be confirmed. Use `hash` from the result to confirm the payment with `/api_v1/payments/confirm` within 10 minutes.
 
     POST /api_v1/payments/preview
 
@@ -32,7 +30,8 @@ The API analyses the payment and returns the actual payment that would be made i
     annotated (=TRUE)   : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
     referrer (=NULL)    : URL, the origin of the payment
 
-Examples of recipients that can be put in the `data` argument:
+Examples of formats that can be put in the `data` argument:
+- `mobbr-username`
 - `me@mail.com`
 - `mailto:me@mail.com`
 - `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
@@ -56,7 +55,7 @@ Request
     -d '{"data":"https://github.com/identifi/identifi"}' 
     https://test-api.mobbr.com/api_v1/payments/preview
 
-Response, arrays reduced to a single element
+Response
 
     {
         "result": 
@@ -101,6 +100,8 @@ Response, arrays reduced to a single element
         },
         "message": null
     }
+    
+*Note that in the response is the normalized, canonical URL that was actually paid! This URL can be different from the the input URL. The API will follow the canonical links in pages and remove unnecessary characters from URL's.*    
     
 **Example 2**, preparing actual payment to a username, amount and currency specified.
 
@@ -321,7 +322,7 @@ List all payment for the specified domain / host.
 
 **Arguments**
 
-    domain      : the domain / host for which to list the payments
+    domain      : the domain (host) for which to list the payments
     offset(=0)          
     limit(=100)    
 
@@ -492,7 +493,7 @@ Response
 
 ##List unclaimed shares
 
-List the shares that are not yet claimed by their recipients and can still be reclaimed. Shares are unclaimed when paid to users that are not yet member of Mobbr.
+List the shares that are not yet claimed by their recipients and can still be reclaimed. Shares are unclaimed when paid to users that are not yet member of Mobbr. Once the users registers the shares are assigned to his/her account and can not longer be revoked.
 
 	GET	/api_v1/payments/unclaimed_shares	
 	
@@ -531,7 +532,7 @@ Response
 	
 ##Revoke unclaimed shares
 
-Reclaim unclaimed shares / revoking shares. Only shares listed by `GET /api_v1/payments/unclaimed_shares` can be revoked
+Reclaim unclaimed shares / revoking shares. Only shares listed by `GET /api_v1/payments/unclaimed_shares` can be revoked. 
 
     DELETE /api_v1/payments/unclaimed_shares
     

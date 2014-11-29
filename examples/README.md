@@ -1,6 +1,7 @@
 #Examples
 
 - [Preparing a web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
+- [Crowdfunding a task] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#crowdfunding-a-task)
 - [Doing a payment by API] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
 
 ##Preparing a webpage
@@ -87,6 +88,34 @@ Supported button types:
 
 Supported currencies:
 - all FIAT currencies plus BTC
+
+The script can be either static or dynamically generated, based on some algorithm or statistic that is relevant to the payment or collaboration.
+
+##Crowdfunding a task
+
+The API supports crowdfunding (accumulating payments) and crowdpaying (paying many at once). For this functionality the web page of the task needs to have a Mobbr script as described above.
+
+To enable crowdfunding on an URL, change the value of the `type` field to `pledge`.
+
+    <html>
+        <head>
+        
+        <!-- the Mobbr payment script, example, generate this dynamically based on contribution/participation ->
+        <meta name="participation" content='
+            {
+                "type":"pledge",
+                ...
+            }'>
+        
+        ...
+        
+    </html>
+
+While in crowdfunding mode, all payments are kept in escrow by Mobbr until the value is set to `"type":"payment"`. 
+ 
+Changes won't be noticed by our API until it is notified of the script changes. Triggering the pledge (distribution of the accumulated pledges among participants) can be done by:
+- Any of the pledgers can explicitely trigger the payment from the MOBBR.COM dashboard
+- A call to API-method [`PUT /api_v1/payments/claim`](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payments)
 
 ##Payment by API
 

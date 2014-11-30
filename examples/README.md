@@ -6,7 +6,7 @@
 
 ##Preparing a webpage
 
-The Mobbr API can 'pay' URL's. It will do a callback to the URL and read the payment data from a metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
+The Mobbr API can 'pay' URL's. It will do a callback to the URL ([try it](https://mobbr.com/#/task/aHR0cHM6Ly9naXRodWIuY29tL0JpdC1OYXRpb24vdG94Y29yZQ==/view)) and read the payment data from a metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
 
 A very simple HTML page would look like this. 
 
@@ -27,14 +27,14 @@ A very simple HTML page would look like this.
                 ],
                 "participants":
                 [
-                    {"id":"Patrick","share":"2","role":"administrator"},
-                    {"id":"Ernesto","share":"1","role":"developer"},
-                    {"id":"some@email.com","share":"10","role":"architect"},
-                    {"id":"Patrick","role":"owner","share":"10%"}
+                    {"id":"https://mobbr.com/#/person/Patrick","share":"2","role":"administrator"},
+                    {"id":"https://mobbr.com/#/person/Ernesto","share":"1","role":"developer"},
+                    {"id":"mailto:some@email.com","share":"10","role":"architect"},
+                    {"id":"https://mobbr.com/#/person/Patrick","role":"owner","share":"10%"}
                 ]
             }'>
         
-        <!-- The Mobbr javascript includes, just include AS IS -->
+        <!-- The Mobbr javascript includes, needed for the button -->
         <script type="text/javascript" src="https://mobbr.com/mobbr-button.js"></script>
         <script>
             mobbr.setUiUrl("https://mobbr.com/");
@@ -74,10 +74,10 @@ Or it could have a complete payment script, in which case the API won't make any
         ],
         "participants":
         [
-           {"id":"Patrick","share":"2","role":"administrator"},
-           {"id":"Ernesto","share":"1","role":"developer"},
-           {"id":"some@email.com","share":"10","role":"architect"},
-           {"id":"Patrick","role":"owner","share":"10%"}
+            {"id":"https://mobbr.com/#/person/Patrick","share":"2","role":"administrator"},
+            {"id":"https://mobbr.com/#/person/Ernesto","share":"1","role":"developer"},
+            {"id":"mailto:some@email.com","share":"10","role":"architect"},
+            {"id":"https://mobbr.com/#/person/Patrick","role":"owner","share":"10%"}
         ]
     }", "EUR");</script>
 
@@ -113,11 +113,7 @@ To enable crowdfunding on an URL, change the value of the `type` field to `pledg
 
 While in crowdfunding mode, all payments are kept in escrow by Mobbr until the value is set to `"type":"payment"`. 
  
-Changes won't be noticed by our API until it is notified of the script changes. Triggering the pledge (distribution of the accumulated pledges among participants) can be done by:
-- Any of the pledgers can explicitely trigger the payment from the MOBBR.COM dashboard
-- A call to API-method [`PUT /api_v1/payments/claim`](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payments)
+Changes in the script won't be noticed however by our API until it is notified of the script changes. Triggering the pledge (distributing the accumulated pledges among participants) can be done by:
+- Any of the pledgers can trigger their payment from the MOBBR.COM dashboard, upon which the API will trigger them all
+- A call to API-method [`PUT /api_v1/payments/claim`](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payments) 
 
-##Payment by API
-
-To do a payment using the API requires two calls:
-- 

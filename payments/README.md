@@ -30,13 +30,27 @@ Generates a payment preview which lists the actual payment properties and recipi
     annotated (=TRUE)   : TRUE or FALSE, leaves internal bookkeeping in (fields starting with a .)
     referrer (=NULL)    : URL, the origin of the payment
 
-Examples of formats that can be put in the `data` argument:
-- `mobbr-username`
-- `me@mail.com`
-- `mailto:me@mail.com`
-- `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
-- `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
-- `{...}` (a JSON payment script, see [specification](https://github.com/mobbr/mobbr-api-v1/tree/master/specifications) and [examples](https://github.com/mobbr/mobbr-api-v1/tree/master/examples))
+**The data-argument**
+
+The preview method accepts the recipient-types (called "id's") in the data argument:
+
+- an username, e.g. `Patrick`
+- an email address, e.g. `me@mail.com`, if the recipient is no member yet, a registration link will be sent.
+- a twitter username, e.g. `@patricksavalle`, if the recipient is no member yet, instructions will be tweeted.
+- a telephone number, e.g. `+3106275638965`, if the recipient is no member yet, an registration link will be texted. 
+- a personal profile, e.g. `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
+
+Use the [USER API](https://github.com/mobbr/mobbr-api-v1/tree/master/user) to list, delete or add id's to the profile of an user.
+
+The preview method can also prepare complex multi-recipient payments by sending it a payment script in the data argument, see [specification](https://github.com/mobbr/mobbr-api-v1/tree/master/specifications) and [examples](https://github.com/mobbr/mobbr-api-v1/tree/master/examples))
+
+- a payment script
+
+All these types of payments are 'normal' payments that do not show up in any public method of the API. Public payments to tasks are done by sending the API an URL: 
+
+- an URL e.g. `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
+
+The API will do a callback to the URL to discover the payment script. See https://github.com/mobbr/mobbr-api-v1/tree/master/specifications
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 

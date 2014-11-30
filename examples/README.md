@@ -8,7 +8,7 @@
 
 The Mobbr API can 'pay' URL's. It will do a callback to the URL ([try it](https://mobbr.com/#/task/aHR0cHM6Ly9naXRodWIuY29tL0JpdC1OYXRpb24vdG94Y29yZQ==/view)) and read the payment data from a metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
 
-A very simple HTML page would look like this. 
+Mobbr support on a simple HTML page looks like this. 
 
     <html>
         <head>
@@ -19,7 +19,7 @@ A very simple HTML page would look like this.
                 "type":"payment",
                 "language":"EN",
                 "title":"Mobbr demo page",
-                "description":"Some descriptive test",
+                "description":"Some descriptive text",
                 "keywords":
                 [
                     "keyword1",
@@ -46,18 +46,18 @@ A very simple HTML page would look like this.
         </head>
         <body>
         
-            <!-- the visible button, include AS IS -->
+            <!-- the visible button -->
             <script type="text/javascript">mobbr.buttonMedium("", "EUR");</script>
 
         </body>
     </html>
     
-This page would show a button. When the button is clicked the Mobbr lightbox opens over the site and allows users to do payments.
+This page will show a button. When the button is clicked the Mobbr lightbox opens over right side of the site. Like here:
     
 ![Example of the opened lightbox]
 (http://i.imgur.com/0xVTJcZ.png)
 
-The button can also have another URL as argument in which case the API would callback that URL.
+The button can also have an URL as argument in which case the API would callback that URL.
 
     <script type="text/javascript">mobbr.buttonMedium("https://some.other.url/page.html", "EUR");</script>
     
@@ -89,7 +89,7 @@ Supported button types:
 Supported currencies:
 - all FIAT currencies plus BTC
 
-The script can be either static or dynamically generated, based on some algorithm or statistic that is relevant to the payment or collaboration.
+Testing the integration can be done by entering the URL in the box on the Mobbr frontpage https://mobbr.com
 
 ##Crowdfunding a task
 

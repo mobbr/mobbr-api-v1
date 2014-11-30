@@ -50,6 +50,16 @@ All these types of payments are 'normal' payments that do not show up in any pub
 
 In this case the API will do a callback to the URL to discover the payment script in the metadata of the HTML. See https://github.com/mobbr/mobbr-api-v1/tree/master/specifications
 
+**The preview**
+
+The result of this method is the actual payment that can be confirmed. Unpayable recipients will be ommitted, reasons recipients can not be paid include:
+- their share is below the threshold / too small
+- non-existent or unresolvable
+- insufficient KYC-levels / incomplete profile
+- no invoicing information in combination with an invoiced payment
+
+A preview can be requested even if no amount or currency are supplied. 
+
 ![callback mechanism](https://mobbr.com/img/scheme.png)
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.

@@ -32,25 +32,25 @@ Generates a payment preview which lists the actual payment properties and recipi
 
 **The data-argument**
 
-The preview method accepts the recipient-types (called "id's") in the data argument:
+This method accepts the following recipient-types/id's in the data argument:
 
 - an username, e.g. `Patrick`
 - an email address, e.g. `me@mail.com`, if the recipient is no member yet, a registration link will be sent.
 - a twitter username, e.g. `@patricksavalle`, if the recipient is no member yet, instructions will be tweeted.
 - a telephone number, e.g. `+3106275638965`, if the recipient is no member yet, an registration link will be texted. 
-- a personal profile, e.g. `https://github.com/patricksavalle` (personal profile page of any site listed by `GET /api_v1/api/oauth_providers`)
+- any other ID register with Mobbr, such as online profiles, e.g. `https://github.com/patricksavalle`, use the [USER API](https://github.com/mobbr/mobbr-api-v1/tree/master/user) to list, delete, add or confirm id's to the profile of an user.
 
-Use the [USER API](https://github.com/mobbr/mobbr-api-v1/tree/master/user) to list, delete or add id's to the profile of an user.
+The preview method can also prepare complex multi-recipient payments by sending it a payment script in the data argument
 
-The preview method can also prepare complex multi-recipient payments by sending it a payment script in the data argument, see [specification](https://github.com/mobbr/mobbr-api-v1/tree/master/specifications) and [examples](https://github.com/mobbr/mobbr-api-v1/tree/master/examples))
+- a payment script, see [specification](https://github.com/mobbr/mobbr-api-v1/tree/master/specifications) and [examples](https://github.com/mobbr/mobbr-api-v1/tree/master/examples)
 
-- a payment script
+All these types of payments are 'normal' payments that do not show up in any public method of the API. Public payments to tasks are done by sending the API an URL of a HTML page with Mobbr support: 
 
-All these types of payments are 'normal' payments that do not show up in any public method of the API. Public payments to tasks are done by sending the API an URL: 
+- an URL of an HTML page e.g. `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
 
-- an URL e.g. `https://github.com/mobbr/mobbr-api-v1` (any URL that has Mobbr support)
+In this case the API will do a callback to the URL to discover the payment script in the metadata of the HTML. See https://github.com/mobbr/mobbr-api-v1/tree/master/specifications
 
-The API will do a callback to the URL to discover the payment script. See https://github.com/mobbr/mobbr-api-v1/tree/master/specifications
+![callback mechanism](https://mobbr.com/img/scheme.png)
 
 **Example 1**, previewing only recipients of a payment to a Github URL, no amount or currency specified.
 

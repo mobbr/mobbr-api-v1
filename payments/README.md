@@ -182,35 +182,94 @@ Response
 
 **Example 3**, sending a multi-recipient payment script
 
-The data argument can also contain JSON scripts that describe a complex payment, for example:
+The data argument can also contain JSON scripts that describe a complex payment, for example, if this is the payment script:
 
     {
-        "image": "https://avatars3.githubusercontent.com/u/3898718?v=3&s=400",
-        "language": "EN",
-        "title": "Any title",
-        "description": "Any description",
-        "participants": 
+        "participants" : 
         [
             {
-                "id": "mailto:octocat@github.com",
-                "role": "Platform-owner",
-                "share": "1%"
+                "id": "mailto:patman@mobbr.com",
+                "role": "author",
+                "share": "3"
             },
             {
-                "id": "https://github.com/rippler",
-                "role": "Contributor",
-                "share": 24
+                "id": "mailto:johnny@mobbr.com",
+                "role": "author",
+                "share": "3"
             },
             {
-                "id": "https://mobbr.com/#/patrick",
-                "role": "Contributor",
-                "share": 11
+                "id": "mailto:info@zaplog.nl",
+                "role": "platform",
+                "share": "1"
             }
-        ],
-        "keywords": [
-            "keyword"
-        ],
-        "message": "Text",
+        ]
+    }
+    
+Then the request becomes (you need to escape the quotes in the script and remove the line breaks):
+    
+Request data
+
+    {
+        "amount": 10,
+        "currency": "GBP",
+        "data": "{\"participants\" : [{\"id\": \"mailto:patman@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:johnny@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:info@zaplog.nl\",\"role\": \"platform\",\"share\": \"1\"}]}"
+    }
+    
+Request
+  
+    curl 
+    -X POST 
+    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
+    -H "Accept: application/json" 
+    -H "Content-Type: application/json" 
+    -d '{"amount":10,"currency":"GBP","data":"{\"participants\" : [{\"id\": \"mailto:patman@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:johnny@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:info@zaplog.nl\",\"role\": \"platform\",\"share\": \"1\"}]}"}' 
+    http://api.mobbr.dev/api_v1/payments/preview    
+
+Response
+    
+    {
+        "result": {
+            "hash": "11d9c687e1c49977ae097c4f5fb34a96",
+            "script": {
+                "participants": [
+                    {
+                        "id": "mailto:patman@mobbr.com",
+                        "role": "author",
+                        "share": "3",
+                        ".x-id": "b3f8ba59ce297638b64febad1885a0ca",
+                        ".amount": "4.2857142857143",
+                        ".percentage": "42.857142857143",
+                        ".gravatar": "2343276557bfc20f7604aa2293aa4867"
+                    },
+                    {
+                        "id": "mailto:johnny@mobbr.com",
+                        "role": "author",
+                        "share": "3",
+                        ".x-id": "81f4f9edfdbaeed554a09111ff5a9b03",
+                        ".amount": "4.2857142857143",
+                        ".percentage": "42.857142857143",
+                        ".gravatar": "94ebc4049da2e0f17648c19acc8c3632"
+                    },
+                    {
+                        "id": "mailto:info@zaplog.nl",
+                        "role": "platform",
+                        "share": "1",
+                        ".x-id": "f7daa9c87202a04c3c84b35afd2b1618",
+                        ".amount": "1.4285714285714",
+                        ".percentage": "14.285714285714",
+                        ".gravatar": "41404736646e0c4a861ddfaa8579522e"
+                    }
+                ],
+                "type": "donation",
+                "message": "Consider making a donation to this item.",
+                ".amount": 10,
+                ".currency": "GBP",
+                ".invoiced": false,
+                ".referrer": null
+            },
+            "url": null
+        },
+        "message": null
     }
 
 For the full specification, see: https://github.com/mobbr/mobbr-api-v1/tree/master/specifications

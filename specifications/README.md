@@ -11,7 +11,7 @@
     "keywords":
     [
         "planned obsolescence", "iphony"
-    ]
+    ],
     "participants" : 
     [
         {
@@ -167,7 +167,7 @@
     "keywords":
     [
         "planned obsolescence", "iphony"
-    ]
+    ],
     "participants" : 
     [
         {

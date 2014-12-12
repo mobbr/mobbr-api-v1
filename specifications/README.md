@@ -156,9 +156,9 @@
 <pre><code>&lt;html&gt;
 &lt;head&gt;
     <b>&lt;link rel="participation" type="application/json"
-        href="https://mobbr.com/mobbr-payment_info.json"/&gt;</b></code></pre>
+        href="https://yourdomain.com/your_payment_script"/&gt;</b></code></pre>
 
-<p><code>HTTPS://MOBBR.COM/MOBBR-PAYMENT_INFO.JSON</code></p>
+<p><code>HTTPS://YOURDOMAIN.COM/YOUR_PAYMENT_SCRIPT</code></p>
 
 <pre><code>{
     "title" : "The iPhony6",

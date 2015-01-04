@@ -1,3 +1,5 @@
+![Mobbr](https://api.mobbr.com/images/apiheader.png)
+
 #MOBBR CROWDPAYMENT REST-API V1
 
 > The dynamically generated API quick reference is here: https://api.mobbr.com In case of conflict between this documentation and the quick reference, trust the quick reference.
@@ -12,11 +14,8 @@ With this API you can:
 - create, maintain and check online identities
 - invite the best individuals for tasks
 - find the best tasks for users
-
-The API accepts the following payment destinations:
-- usernames, email addresses, twitter users, bitcoin addresses, telephone numbers and supported OAUTH user profiles (such as Github, Stackoverflow)
-- JSON payment scripts that lists the payment properties and all recipients and their shares
-- URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
+- pay to usernames, email addresses, twitter users, bitcoin addresses, telephone numbers and supported OAUTH user profiles (such as Github, Stackoverflow)
+- pay to URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
 
 ##Examples and specifications
 

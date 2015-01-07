@@ -1,8 +1,10 @@
-#MOBBR CROWDPAYMENT REST-API V1
+#MOBBR PAYMENT REST-API V1
+
+![Mobbr](https://api.mobbr.com/images/apiheader.png)
 
 > The dynamically generated API quick reference is here: https://api.mobbr.com In case of conflict between this documentation and the quick reference, trust the quick reference.
 
-Mobbr is a wallet-based payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button.
+Mobbr is a wallet-based payment system for social collaboration and crowd-sourcing. It supports crowd-funding and crowd-payments with a single button on every URL/webpage.
 
 With this API you can:
 
@@ -12,11 +14,8 @@ With this API you can:
 - create, maintain and check online identities
 - invite the best individuals for tasks
 - find the best tasks for users
-
-The API accepts the following payment destinations:
-- usernames, email addresses, twitter users, bitcoin addresses, telephone numbers and supported OAUTH user profiles (such as Github, Stackoverflow)
-- JSON payment scripts that lists the payment properties and all recipients and their shares
-- URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
+- pay to usernames, email addresses, twitter users, bitcoin addresses, telephone numbers and supported OAUTH user profiles (such as Github, Stackoverflow)
+- pay to URL's, in which case the API does a callback to retrieve a JSON payment script from the `<metadata name="participation" content="..." />` HTML tag
 
 ##Examples and specifications
 

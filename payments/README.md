@@ -141,7 +141,6 @@ Request
 
     curl 
     -X POST 
-    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
     -H "Content-Type: application/json" 
     -H "Accept: application/json" 
     -d '{"data":"Patrick", "amount":10, "currency":"GBP"}' 
@@ -219,7 +218,6 @@ Request
   
     curl 
     -X POST 
-    -H "Authorization: Basic UGF0cmljazptMGJicjIwMTE=" 
     -H "Accept: application/json" 
     -H "Content-Type: application/json" 
     -d '{"amount":10,"currency":"GBP","data":"{\"participants\" : [{\"id\": \"mailto:patman@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:johnny@mobbr.com\",\"role\": \"author\",\"share\": \"3\"},{\"id\": \"mailto:info@zaplog.nl\",\"role\": \"platform\",\"share\": \"1\"}]}"}' 

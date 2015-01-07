@@ -1,8 +1,71 @@
 #Examples
 
+- [Making a payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#making-a-payment)
 - [Preparing a web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
 - [Crowdfunding a task] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#crowdfunding-a-task)
 - [Doing a payment by API] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
+
+##Making a payment
+
+Doing a 'simple' payment consists of two API-calls: one to prepare a payment preview and another to confirm the the payment. The payment preview will be invalidated automatically after 10 minutes.
+
+To pay GBP 10.00 to an email address, first prepare the preview.
+
+    curl 
+    -X POST 
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json" 
+    -d '{"data":"mailto:patrick@patricksavalle.com", "amount":10, "currency":"GBP"}' 
+    https://test-api.mobbr.com/api_v1/payments/preview
+
+The response can be shown to a user:
+
+    {
+        "result": 
+        {
+            "hash": "05b921e21ad2a78d00e7b1ec721baaa8",
+            "script": 
+            {
+                "id-base": "https://mobbr.com/#/person/",
+                "type": "pay",
+                "title": "Payment to 'https://mobbr.com/#/person/patrick'",
+                "participants": 
+                [
+                    {
+                        "id": "mailto:patrick@patricksavalle.com",
+                        "share": 1,
+                        "role": "",
+                        ".x-id": "Patrick",
+                        ".amount": "10",
+                        ".percentage": "100",
+                        ".gravatar": "e6032c3bbb3ece98d2782862594b08c2"
+                    }
+                ],
+                ".amount": 10,
+                ".currency": "GBP",
+                ".invoiced": false,
+                ".referrer": null
+            },
+            "url": null
+        },
+        "message": null
+    }
+
+The preview shows the payment that can actually be made, which can differ from the requested payment, depending of different business rules (such as account limits and payment thresholds). If the payment is correct, it needs to be confirmed. Use the 'hash' value from the response.
+
+    curl 
+    -X PUT 
+    -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=" 
+    -H "Content-Type: application/json" 
+    -d '{"hash":"05b921e21ad2a78d00e7b1ec721baaa8"}' 
+    https://test-api.mobbr.com/api_v1/payments/confirm
+    
+That's it.
+
+Note that requesting a payment preview does not need authentication.
+
+Payments can be made to email adresses, twitter-ID's, URL's etc. See: https://github.com/mobbr/mobbr-api-v1/tree/master/payments#create-payment
+
 
 ##Preparing a webpage
 

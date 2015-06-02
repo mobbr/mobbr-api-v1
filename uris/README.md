@@ -16,6 +16,7 @@ Get extended information on a URL (task). The info contains some statistics but 
 - *url* 
 - *base_currency*(='EUR')
 - *include_statistics*(=true)
+- *verbose*(=true)
 
 **Example**
 

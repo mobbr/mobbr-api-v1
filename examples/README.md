@@ -154,6 +154,8 @@ To prevent the API from visiting the URL (for instance for private sites), enter
 
 Testing the integration can be done by entering the URL in the box on the Mobbr frontpage https://mobbr.com
 
+The script does not need to be in the HTML of your web page(s), you can also place a `/participation.txt` on your domain. For more options see [the specifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications). 
+
 ##Crowdfunding a task
 
 The API / Mobbr supports crowdfunding (accumulating payments) and crowdpaying (paying many at once) on any web page. For this functionality the HTML-header of the web page needs to have a Mobbr-script as described above.
@@ -178,4 +180,6 @@ While in crowdfunding mode, all payments are kept in escrow by Mobbr until the v
 Changes in the script won't be noticed however by our API until it is notified of the script changes. Triggering the pledge (distributing the accumulated pledges among participants) can be done by:
 - Any of the pledgers can trigger their payment from the MOBBR.COM dashboard, upon which the API will trigger them all
 - A call to API-method [`PUT /api_v1/payments/claim`](https://github.com/mobbr/mobbr-api-v1/tree/master/payments#claim-payments) 
+
+The script does not need to be in the HTML of your web page(s), you can also place a `/participation.txt` on your domain. For more options see [the specifications] (https://github.com/mobbr/mobbr-api-v1/tree/master/specifications). 
 

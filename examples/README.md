@@ -1,8 +1,8 @@
 #Examples
 
 - [Making a payment] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#making-a-payment)
-- [Preparing a web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
-- [Crowdfunding a task] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#crowdfunding-a-task)
+- [Making any web page payable] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
+- [Adding crowdfunding to any web page] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#crowdfunding-a-task)
 - [Doing a payment by API] (https://github.com/mobbr/mobbr-api-v1/tree/master/examples#preparing-a-webpage)
 
 ##Making a payment
@@ -69,9 +69,7 @@ Payments can be made to email adresses, twitter-ID's, URL's etc. See: https://gi
 
 ##Preparing a webpage
 
-The Mobbr API can 'pay' URL's. It will do a callback to the URL ([try it](https://mobbr.com/#/task/aHR0cHM6Ly9naXRodWIuY29tL0JpdC1OYXRpb24vdG94Y29yZQ==/view)) and read the payment data from a metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
-
-Mobbr support on a simple HTML page looks like this. 
+The Mobbr API can send a payment to any URL. Mobbr support on a simple HTML page looks like this. 
 
     <html>
         <head>
@@ -120,11 +118,21 @@ This page will show a button. When the button is clicked the Mobbr lightbox open
 ![Example of the opened lightbox]
 (http://i.imgur.com/0xVTJcZ.png)
 
-The button can also have an URL as argument in which case the API would callback that URL.
+The button can also have an URL as argument in which case Mobbr will send the payment to that URL.
 
     <script type="text/javascript">mobbr.buttonMedium("https://some.other.url/page.html", "EUR");</script>
     
-Or it could have a complete payment script, in which case the API won't make any callbacks:
+Supported button types:
+- `buttonMedium`
+- `buttonLarge`
+- `buttonSlim`
+
+Supported currencies:
+- all FIAT currencies plus BTC
+
+Upon payment, the API will visit the URL ([try it](https://mobbr.com/#/task/aHR0cHM6Ly9naXRodWIuY29tL0JpdC1OYXRpb24vdG94Y29yZQ==/view)) and read the payment data from the metadata-tag in the HTML. This is useful for collaboration platforms; the script can be generated dynamically based on the participation levels in the collaboration.
+
+To prevent the API from visiting the URL (for instance for private sites), enter complete payment data in the button-script:
 
     <script type="text/javascript">mobbr.buttonMedium("{
         "type":"payment",
@@ -144,21 +152,13 @@ Or it could have a complete payment script, in which case the API won't make any
         ]
     }", "EUR");</script>
 
-Supported button types:
-- `buttonMedium`
-- `buttonLarge`
-- `buttonSlim`
-
-Supported currencies:
-- all FIAT currencies plus BTC
-
 Testing the integration can be done by entering the URL in the box on the Mobbr frontpage https://mobbr.com
 
 ##Crowdfunding a task
 
-The API supports crowdfunding (accumulating payments) and crowdpaying (paying many at once). For this functionality the web page of the task needs to have a Mobbr script as described above.
+The API / Mobbr supports crowdfunding (accumulating payments) and crowdpaying (paying many at once) on any web page. For this functionality the HTML-header of this web page needs to have a Mobbr-script as described above but with the value of the `type` field set to `pledge`.
 
-To enable crowdfunding on an URL, change the value of the `type` field to `pledge`.
+To enable crowdfunding on any URL, this is the minimal script. 
 
     <html>
         <head>
@@ -166,8 +166,7 @@ To enable crowdfunding on an URL, change the value of the `type` field to `pledg
         <!-- the Mobbr payment script, example, generate this dynamically based on contribution/participation ->
         <meta name="participation" content='
             {
-                "type":"pledge",
-                ...
+                "type":"pledge"
             }'>
         
         ...

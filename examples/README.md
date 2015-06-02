@@ -156,9 +156,9 @@ Testing the integration can be done by entering the URL in the box on the Mobbr 
 
 ##Crowdfunding a task
 
-The API / Mobbr supports crowdfunding (accumulating payments) and crowdpaying (paying many at once) on any web page. For this functionality the HTML-header of this web page needs to have a Mobbr-script as described above but with the value of the `type` field set to `pledge`.
+The API / Mobbr supports crowdfunding (accumulating payments) and crowdpaying (paying many at once) on any web page. For this functionality the HTML-header of the web page needs to have a Mobbr-script as described above.
 
-To enable crowdfunding on any URL, this is the minimal script. 
+To enable crowdfunding on any URL set the value of the `type` field in the script to `pledge`. This is the minimal script needed to turn-on Mobbr crowdfunding on your web page: 
 
     <html>
         <head>

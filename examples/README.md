@@ -97,19 +97,13 @@ The Mobbr API can send a payment to any URL. Mobbr support on a simple HTML page
         
         <!-- The Mobbr javascript includes, needed for the button -->
         <script type="text/javascript" src="https://mobbr.com/mobbr-button.js"></script>
-        <script>
-            mobbr.setUiUrl("https://mobbr.com/");
-            mobbr.setApiUrl("https://api.mobbr.com/");
-            mobbr.setLightboxUrl("https://mobbr.com/lightbox/#");
-            mobbr.createDiv();
-        </script>            
         
         </head>
         <body>
         
             <!-- the visible button -->
             <script type="text/javascript">mobbr.buttonMedium("", "EUR");</script>
-
+            
         </body>
     </html>
     
